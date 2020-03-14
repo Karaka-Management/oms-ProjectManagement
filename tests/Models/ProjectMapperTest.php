@@ -12,7 +12,7 @@
  */
 declare(strict_types=1);
 
-namespace Modules\tests\ProjectManagement\Models;
+namespace Modules\ProjectManagement\tests\Models;
 
 use Modules\Admin\Models\NullAccount;
 use Modules\Media\Models\Media;
