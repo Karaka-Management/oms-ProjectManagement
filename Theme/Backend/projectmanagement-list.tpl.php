@@ -29,16 +29,16 @@ echo $this->getData('nav')->render(); ?>
             <table class="default">
                 <thead>
                 <tr>
-                    <td class="wf-100"><?= $this->getHtml('Title') ?>
-                    <td><?= $this->getHtml('Start') ?>
-                    <td><?= $this->getHtml('Due') ?>
+                    <td class="wf-100"><?= $this->getHtml('Title'); ?>
+                    <td><?= $this->getHtml('Start'); ?>
+                    <td><?= $this->getHtml('Due'); ?>
                 <tbody>
                 <?php $count = 0; foreach ($list as $key => $value) : ++$count;
-                $url = \phpOMS\Uri\UriFactory::build('{/prefix}projectmanagement/profile?{?}&id=' . $value->getId());?>
+                $url = \phpOMS\Uri\UriFactory::build('{/prefix}projectmanagement/profile?{?}&id=' . $value->getId()); ?>
                 <tr tabindex="0" data-href="<?= $url; ?>">
-                    <td data-label="<?= $this->getHtml('Title') ?>"><a href="<?= $url; ?>"><?= $this->printHtml($value->getName()); ?></a>
-                    <td data-label="<?= $this->getHtml('Start') ?>"><a href="<?= $url; ?>"><?= $this->printHtml($value->getStart()->format('Y-m-d')); ?></a>
-                    <td data-label="<?= $this->getHtml('Due') ?>"><a href="<?= $url; ?>"><?= $this->printHtml($value->getEnd()->format('Y-m-d')); ?></a>
+                    <td data-label="<?= $this->getHtml('Title'); ?>"><a href="<?= $url; ?>"><?= $this->printHtml($value->getName()); ?></a>
+                    <td data-label="<?= $this->getHtml('Start'); ?>"><a href="<?= $url; ?>"><?= $this->printHtml($value->getStart()->format('Y-m-d')); ?></a>
+                    <td data-label="<?= $this->getHtml('Due'); ?>"><a href="<?= $url; ?>"><?= $this->printHtml($value->getEnd()->format('Y-m-d')); ?></a>
                 <?php endforeach; ?>
                 <?php if ($count === 0) : ?>
                 <tr><td colspan="5" class="empty"><?= $this->getHtml('Empty', '0', '0'); ?>
