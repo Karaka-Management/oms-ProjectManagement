@@ -15,7 +15,6 @@ declare(strict_types=1);
 namespace Modules\ProjectManagement\Controller;
 
 use Modules\ProjectManagement\Models\ProjectMapper;
-
 use phpOMS\Asset\AssetType;
 use phpOMS\Contract\RenderableInterface;
 use phpOMS\Message\RequestAbstract;
