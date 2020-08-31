@@ -63,16 +63,16 @@ final class ProjectMapper extends DataMapperAbstract
      */
     protected static array $hasMany = [
         'tasks' => [
-            'mapper' => TaskMapper::class,
-            'table'  => 'projectmanagement_task_relation',
+            'mapper'   => TaskMapper::class,
+            'table'    => 'projectmanagement_task_relation',
             'external' => 'projectmanagement_task_relation_dst',
-            'self'   => 'projectmanagement_task_relation_src',
+            'self'     => 'projectmanagement_task_relation_src',
         ],
         'media' => [
-            'mapper' => MediaMapper::class,
-            'table'  => 'projectmanagement_project_media',
+            'mapper'   => MediaMapper::class,
+            'table'    => 'projectmanagement_project_media',
             'external' => 'projectmanagement_project_media_src',
-            'self'   => 'projectmanagement_project_media_dst',
+            'self'     => 'projectmanagement_project_media_dst',
         ],
     ];
 
