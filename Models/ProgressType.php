@@ -26,13 +26,13 @@ use phpOMS\Stdlib\Base\Enum;
  */
 abstract class ProgressType extends Enum
 {
-    public const MANUAL      = 0;
+    public const MANUAL = 0;
 
-    public const LINEAR      = 1;
+    public const LINEAR = 1;
 
     public const EXPONENTIAL = 2;
 
-    public const LOG         = 3;
+    public const LOG = 3;
 
-    public const TASKS       = 4;
+    public const TASKS = 4;
 }
