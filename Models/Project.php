@@ -158,7 +158,7 @@ class Project
      * @var \DateTime
      * @since 1.0.0
      */
-    private \DateTime $createdAt;
+    private \DateTimeImmutable $createdAt;
 
     /**
      * Created by.
@@ -190,7 +190,7 @@ class Project
         $this->end->modify('+1 month');
 
         $this->endEstimated = clone $this->end;
-        $this->createdAt    = new \DateTime('now');
+        $this->createdAt    = new \DateTimeImmutable('now');
         $this->createdBy    = new NullAccount();
 
         $this->calendar = new Calendar();
@@ -699,7 +699,7 @@ class Project
      *
      * @since 1.0.0
      */
-    public function getCreatedAt() : \DateTime
+    public function getCreatedAt() : \DateTimeInterface
     {
         return $this->createdAt;
     }

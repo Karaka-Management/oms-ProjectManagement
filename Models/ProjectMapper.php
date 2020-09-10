@@ -52,7 +52,7 @@ final class ProjectMapper extends DataMapperAbstract
         'projectmanagement_project_progress'        => ['name' => 'projectmanagement_project_progress',        'type' => 'int',          'internal' => 'progress'],
         'projectmanagement_project_progress_type'   => ['name' => 'projectmanagement_project_progress_type',   'type' => 'int',          'internal' => 'progressType'],
         'projectmanagement_project_created_by'      => ['name' => 'projectmanagement_project_created_by',      'type' => 'int',          'internal' => 'createdBy', 'readonly' => true],
-        'projectmanagement_project_created_at'      => ['name' => 'projectmanagement_project_created_at',      'type' => 'DateTime',     'internal' => 'createdAt', 'readonly' => true],
+        'projectmanagement_project_created_at'      => ['name' => 'projectmanagement_project_created_at',      'type' => 'DateTimeImmutable', 'internal' => 'createdAt', 'readonly' => true],
     ];
 
     /**
