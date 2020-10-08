@@ -98,6 +98,10 @@ class ProjectMapperTest extends \PHPUnit\Framework\TestCase
         self::assertEquals(\end($expected)->getName(), \end($actual)->getName());
     }
 
+    /**
+     * @covers Modules\ProjectManagement\Models\ProjectMapper
+     * @group module
+     */
     public function testNewest() : void
     {
         $newest = ProjectMapper::getNewest(1);
