@@ -84,7 +84,7 @@ final class ProjectMapper extends DataMapperAbstract
      */
     protected static array $ownsOne = [
         'calendar' => [
-            'mapper' => CalendarMapper::class,
+            'mapper'     => CalendarMapper::class,
             'external'   => 'projectmanagement_project_calendar',
         ],
     ];
@@ -97,7 +97,7 @@ final class ProjectMapper extends DataMapperAbstract
      */
     protected static array $belongsTo = [
         'createdBy' => [
-            'mapper' => AccountMapper::class,
+            'mapper'     => AccountMapper::class,
             'external'   => 'projectmanagement_project_created_by',
         ],
     ];
