@@ -35,12 +35,12 @@ class ProjectTest extends \PHPUnit\Framework\TestCase
 
         self::assertEquals(0, $project->getId());
         self::assertInstanceOf('\Modules\Calendar\Models\Calendar', $project->getCalendar());
-        self::assertEquals((new \DateTime('now'))->format('Y-m-d'), $project->getCreatedAt()->format('Y-m-d'));
+        self::assertEquals((new \DateTime('now'))->format('Y-m-d'), $project->createdAt->format('Y-m-d'));
         self::assertEquals((new \DateTime('now'))->format('Y-m-d'), $project->getStart()->format('Y-m-d'));
         self::assertEquals((new \DateTime('now'))->modify('+1 month')->format('Y-m-d'), $project->getEnd()->format('Y-m-d'));
-        self::assertEquals(0, $project->getCreatedBy()->getId());
+        self::assertEquals(0, $project->createdBy->getId());
         self::assertEquals('', $project->getName());
-        self::assertEquals('', $project->getDescription());
+        self::assertEquals('', $project->description);
         self::assertEquals(0, $project->getCosts()->getInt());
         self::assertEquals(0, $project->getBudgetCosts()->getInt());
         self::assertEquals(0, $project->getBudgetEarnings()->getInt());
@@ -63,8 +63,8 @@ class ProjectTest extends \PHPUnit\Framework\TestCase
         $project->setName('Project');
         self::assertEquals('Project', $project->getName());
 
-        $project->setDescription('Description');
-        self::assertEquals('Description', $project->getDescription());
+        $project->description = 'Description';
+        self::assertEquals('Description', $project->description);
 
         $project->setStart($date = new \DateTime('2000-05-05'));
         self::assertEquals($date->format('Y-m-d'), $project->getStart()->format('Y-m-d'));
@@ -88,12 +88,12 @@ class ProjectTest extends \PHPUnit\Framework\TestCase
         self::assertEquals($money->getAmount(), $project->getEarnings()->getAmount());
 
         $task = new Task();
-        $task->setTitle('A');
+        $task->title = 'A';
         $task->setCreatedBy(new NullAccount(1));
 
         $project->addTask($task);
 
-        self::assertEquals('A', $project->getTask(0)->getTitle());
+        self::assertEquals('A', $project->getTask(0)->title);
         self::assertCount(1, $project->getTasks());
         self::assertTrue($project->removeTask(0));
         self::assertEquals(0, $project->countTasks());

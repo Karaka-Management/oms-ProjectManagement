@@ -37,8 +37,8 @@ class ProjectMapperTest extends \PHPUnit\Framework\TestCase
         $project = new Project();
 
         $project->setName('Projectname');
-        $project->setDescription('Description');
-        $project->setCreatedBy(new NullAccount(1));
+        $project->description = 'Description';
+        $project->createdBy = new NullAccount(1);
         $project->setStart(new \DateTime('2000-05-05'));
         $project->setEnd(new \DateTime('2005-05-05'));
 
@@ -51,11 +51,11 @@ class ProjectMapperTest extends \PHPUnit\Framework\TestCase
         $project->setEarnings($money);
 
         $task = new Task();
-        $task->setTitle('ProjectTask 1');
+        $task->title = 'ProjectTask 1';
         $task->setCreatedBy(new NullAccount(1));
 
         $task2 = new Task();
-        $task2->setTitle('ProjectTask 2');
+        $task2->title = 'ProjectTask 2';
         $task2->setCreatedBy(new NullAccount(1));
 
         $project->addTask($task);
@@ -65,12 +65,12 @@ class ProjectMapperTest extends \PHPUnit\Framework\TestCase
         $project->setProgressType(ProgressType::TASKS);
 
         $media = new Media();
-        $media->setCreatedBy(new NullAccount(1));
-        $media->setDescription('desc');
+        $media->createdBy = new NullAccount(1);
+        $media->description = 'desc';
         $media->setPath('some/path');
-        $media->setSize(11);
-        $media->setExtension('png');
-        $media->setName('Project Media');
+        $media->size = 11;
+        $media->extension = 'png';
+        $media->name = 'Project Media';
         $project->addMedia($media);
 
         $id = ProjectMapper::create($project);
@@ -80,13 +80,13 @@ class ProjectMapperTest extends \PHPUnit\Framework\TestCase
         $projectR = ProjectMapper::get($project->getId());
 
         self::assertEquals($project->getName(), $projectR->getName());
-        self::assertEquals($project->getDescription(), $projectR->getDescription());
+        self::assertEquals($project->description, $projectR->description);
         self::assertEquals($project->countTasks(), $projectR->countTasks());
         self::assertEquals($project->getCosts()->getAmount(), $projectR->getCosts()->getAmount());
         self::assertEquals($project->getBudgetEarnings()->getAmount(), $projectR->getBudgetEarnings()->getAmount());
         self::assertEquals($project->getBudgetCosts()->getAmount(), $projectR->getBudgetCosts()->getAmount());
         self::assertEquals($project->getEarnings()->getAmount(), $projectR->getEarnings()->getAmount());
-        self::assertEquals($project->getCreatedAt()->format('Y-m-d'), $projectR->getCreatedAt()->format('Y-m-d'));
+        self::assertEquals($project->createdAt->format('Y-m-d'), $projectR->createdAt->format('Y-m-d'));
         self::assertEquals($project->getStart()->format('Y-m-d'), $projectR->getStart()->format('Y-m-d'));
         self::assertEquals($project->getEnd()->format('Y-m-d'), $projectR->getEnd()->format('Y-m-d'));
         self::assertEquals($project->getProgress(), $projectR->getProgress());
@@ -95,7 +95,7 @@ class ProjectMapperTest extends \PHPUnit\Framework\TestCase
         $expected = $project->getMedias();
         $actual   = $projectR->getMedias();
 
-        self::assertEquals(\end($expected)->getName(), \end($actual)->getName());
+        self::assertEquals(\end($expected)->name, \end($actual)->name);
     }
 
     /**
@@ -122,8 +122,8 @@ class ProjectMapperTest extends \PHPUnit\Framework\TestCase
             $project = new Project();
 
             $project->setName($text->generateText(\mt_rand(3, 7)));
-            $project->setDescription($text->generateText(\mt_rand(20, 100)));
-            $project->setCreatedBy(new NullAccount(1));
+            $project->description = $text->generateText(\mt_rand(20, 100));
+            $project->createdBy = new NullAccount(1);
             $project->setStart(new \DateTime('2000-05-05'));
             $project->setEnd(new \DateTime('2005-05-05'));
             $project->setProgress(\mt_rand(0, 100));
