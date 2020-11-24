@@ -532,7 +532,7 @@ class Project
      */
     public function setName(string $name) : void
     {
-        $this->name = $name;
+        $this->name           = $name;
         $this->calendar->name = $name;
     }
 

@@ -87,7 +87,7 @@ class ProjectTest extends \PHPUnit\Framework\TestCase
         $project->setEarnings($money);
         self::assertEquals($money->getAmount(), $project->getEarnings()->getAmount());
 
-        $task = new Task();
+        $task        = new Task();
         $task->title = 'A';
         $task->setCreatedBy(new NullAccount(1));
 
