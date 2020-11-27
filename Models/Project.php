@@ -91,10 +91,10 @@ class Project
     /**
      * Calendar.
      *
-     * @var int|Calendar
+     * @var Calendar
      * @since 1.0.0
      */
-    private $calendar;
+    public Calendar $calendar;
 
     /**
      * Current total costs.
@@ -495,18 +495,6 @@ class Project
     public function getEstimatedEnd() : \DateTime
     {
         return $this->end;
-    }
-
-    /**
-     * Get calendar
-     *
-     * @return Calendar
-     *
-     * @since 1.0.0
-     */
-    public function getCalendar() : Calendar
-    {
-        return $this->calendar;
     }
 
     /**
