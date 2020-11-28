@@ -38,7 +38,7 @@ class Project
      * @var int
      * @since 1.0.0
      */
-    private int $id = 0;
+    protected int $id = 0;
 
     /**
      * Start date.

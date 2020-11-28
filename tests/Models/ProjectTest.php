@@ -34,7 +34,7 @@ class ProjectTest extends \PHPUnit\Framework\TestCase
         $project = new Project();
 
         self::assertEquals(0, $project->getId());
-        self::assertInstanceOf('\Modules\Calendar\Models\Calendar', $project->getCalendar());
+        self::assertInstanceOf('\Modules\Calendar\Models\Calendar', $project->calendar);
         self::assertEquals((new \DateTime('now'))->format('Y-m-d'), $project->createdAt->format('Y-m-d'));
         self::assertEquals((new \DateTime('now'))->format('Y-m-d'), $project->getStart()->format('Y-m-d'));
         self::assertEquals((new \DateTime('now'))->modify('+1 month')->format('Y-m-d'), $project->getEnd()->format('Y-m-d'));
