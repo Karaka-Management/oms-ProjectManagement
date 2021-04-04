@@ -106,7 +106,7 @@ final class BackendController extends Controller
         $calendarView->setTemplate('/Modules/Calendar/Theme/Backend/Components/Calendar/mini');
         $view->addData('calendar', $calendarView);
 
-        $mediaListView = new \Modules\Media\Theme\Backend\Components\Media\BaseView($this->app->l11nManager, $request, $response);
+        $mediaListView = new \Modules\Media\Views\MediaView($this->app->l11nManager, $request, $response);
         $mediaListView->setTemplate('/Modules/Media/Theme/Backend/Components/Media/list');
         $view->addData('medialist', $mediaListView);
 
