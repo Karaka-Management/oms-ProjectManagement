@@ -17,7 +17,7 @@ namespace Modules\ProjectManagement\Models;
 use phpOMS\Stdlib\Base\Enum;
 
 /**
- * Task type enum.
+ * Project responsibility type enum.
  *
  * @package Modules\ProjectManagement\Models
  * @license OMS License 1.0
