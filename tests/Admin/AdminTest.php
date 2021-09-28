@@ -19,7 +19,7 @@ namespace Modules\ProjectManagement\tests\Admin;
  */
 class AdminTest extends \PHPUnit\Framework\TestCase
 {
-    protected const MODULE_NAME = 'ProjectManagement';
+    protected const NAME = 'ProjectManagement';
 
     protected const URI_LOAD = '';
 

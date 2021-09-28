@@ -23,7 +23,7 @@ return [
             'dest'       => '\Modules\ProjectManagement\Controller\BackendController:viewProjectManagementList',
             'verb'       => RouteVerb::GET,
             'permission' => [
-                'module' => BackendController::MODULE_NAME,
+                'module' => BackendController::NAME,
                 'type'   => PermissionType::READ,
                 'state'  => PermissionState::PROJECT,
             ],
@@ -34,7 +34,7 @@ return [
             'dest'       => '\Modules\ProjectManagement\Controller\BackendController:viewProjectManagementCreate',
             'verb'       => RouteVerb::GET,
             'permission' => [
-                'module' => BackendController::MODULE_NAME,
+                'module' => BackendController::NAME,
                 'type'   => PermissionType::CREATE,
                 'state'  => PermissionState::PROJECT,
             ],
@@ -45,7 +45,7 @@ return [
             'dest'       => '\Modules\ProjectManagement\Controller\BackendController:viewProjectManagementProfile',
             'verb'       => RouteVerb::GET,
             'permission' => [
-                'module' => BackendController::MODULE_NAME,
+                'module' => BackendController::NAME,
                 'type'   => PermissionType::READ,
                 'state'  => PermissionState::PROJECT,
             ],
