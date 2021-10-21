@@ -26,7 +26,7 @@ use phpOMS\Utils\RnG\Text;
 /**
  * @internal
  */
-class ProjectMapperTest extends \PHPUnit\Framework\TestCase
+final class ProjectMapperTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @covers Modules\ProjectManagement\Models\ProjectMapper

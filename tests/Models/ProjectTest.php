@@ -23,7 +23,7 @@ use phpOMS\Localization\Money;
 /**
  * @internal
  */
-class ProjectTest extends \PHPUnit\Framework\TestCase
+final class ProjectTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @covers Modules\ProjectManagement\Models\Project
