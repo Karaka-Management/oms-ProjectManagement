@@ -46,7 +46,7 @@ class Project
      * @var \DateTime
      * @since 1.0.0
      */
-    private \DateTime $start;
+    public \DateTime $start;
 
     /**
      * End date.
@@ -54,7 +54,7 @@ class Project
      * @var \DateTime
      * @since 1.0.0
      */
-    private \DateTime $end;
+    public \DateTime $end;
 
     /**
      * Estimated end date.
@@ -62,7 +62,7 @@ class Project
      * @var \DateTime
      * @since 1.0.0
      */
-    private \DateTime $endEstimated;
+    public \DateTime $endEstimated;
 
     /**
      * Project name.
@@ -102,7 +102,7 @@ class Project
      * @var Money
      * @since 1.0.0
      */
-    private Money $costs;
+    public Money $costs;
 
     /**
      * Budget costs.
@@ -110,7 +110,7 @@ class Project
      * @var Money
      * @since 1.0.0
      */
-    private Money $budgetCosts;
+    public Money $budgetCosts;
 
     /**
      * Budget earnings.
@@ -118,7 +118,7 @@ class Project
      * @var Money
      * @since 1.0.0
      */
-    private Money $budgetEarnings;
+    public Money $budgetEarnings;
 
     /**
      * Current total earnings.
@@ -126,7 +126,7 @@ class Project
      * @var Money
      * @since 1.0.0
      */
-    private Money $earnings;
+    public Money $earnings;
 
     /**
      * Progress percentage.
@@ -134,7 +134,7 @@ class Project
      * @var int
      * @since 1.0.0
      */
-    private int $progress = 0;
+    public int $progress = 0;
 
     /**
      * Progress calculation.
@@ -222,7 +222,7 @@ class Project
      *
      * @since 1.0.0
      */
-    public function getMedias() : array
+    public function getMedia() : array
     {
         return $this->media;
     }
@@ -238,11 +238,7 @@ class Project
      */
     public function addMedia($media) : void
     {
-        if ($media instanceof Media && $media->getId() !== 0) {
-            $this->media[$media->getId()] = $media;
-        } else {
-            $this->media[] = $media;
-        }
+        $this->media[] = $media;
     }
 
     /**
@@ -276,11 +272,7 @@ class Project
      */
     public function addTask(Task $task) : void
     {
-        if ($task->getId() !== 0) {
-            $this->tasks[$task->getId()] = $task;
-        } else {
-            $this->tasks[] = $task;
-        }
+        $this->tasks[] = $task;
     }
 
     /**
@@ -301,32 +293,6 @@ class Project
         }
 
         return false;
-    }
-
-    /**
-     * Get progress
-     *
-     * @return int
-     *
-     * @since 1.0.0
-     */
-    public function getProgress() : int
-    {
-        return $this->progress;
-    }
-
-    /**
-     * Set progress
-     *
-     * @param int $progress Progress
-     *
-     * @return void
-     *
-     * @since 1.0.0
-     */
-    public function setProgress(int $progress) : void
-    {
-        $this->progress = $progress;
     }
 
     /**
@@ -370,20 +336,6 @@ class Project
     }
 
     /**
-     * Get media
-     *
-     * @param int $id Media id
-     *
-     * @return int|Media
-     *
-     * @since 1.0.0
-     */
-    public function getMedia(int $id)
-    {
-        return $this->media[$id] ?? new NullMedia();
-    }
-
-    /**
      * Get tasks
      *
      * @return Task[]
@@ -393,108 +345,6 @@ class Project
     public function getTasks() : array
     {
         return $this->tasks;
-    }
-
-    /**
-     * Count tasks
-     *
-     * @return int
-     *
-     * @since 1.0.0
-     */
-    public function countTasks() : int
-    {
-        return \count($this->tasks);
-    }
-
-    /**
-     * Count media
-     *
-     * @return int
-     *
-     * @since 1.0.0
-     */
-    public function countMedia() : int
-    {
-        return \count($this->media);
-    }
-
-    /**
-     * Get start date
-     *
-     * @return \DateTime
-     *
-     * @since 1.0.0
-     */
-    public function getStart() : \DateTime
-    {
-        return $this->start;
-    }
-
-    /**
-     * Set start date
-     *
-     * @param \DateTime $start Start date
-     *
-     * @return void
-     *
-     * @since 1.0.0
-     */
-    public function setStart(\DateTime $start) : void
-    {
-        $this->start = $start;
-    }
-
-    /**
-     * Set end date
-     *
-     * @param \DateTime $end End date
-     *
-     * @return void
-     *
-     * @since 1.0.0
-     */
-    public function setEnd(\DateTime $end) : void
-    {
-        $this->end = $end;
-    }
-
-    /**
-     * Get end date
-     *
-     * @return \DateTime
-     *
-     * @since 1.0.0
-     */
-    public function getEnd() : \DateTime
-    {
-        return $this->end;
-    }
-
-    /**
-     * Set estimated end date
-     *
-     * @param \DateTime $end End date
-     *
-     * @return void
-     *
-     * @since 1.0.0
-     */
-    public function setEstimatedEnd(\DateTime $end) : void
-    {
-        $this->end = $end;
-    }
-
-    /**
-     * Get estimated end date
-     *
-     * @return \DateTime
-     *
-     * @since 1.0.0
-     */
-    public function getEstimatedEnd() : \DateTime
-    {
-        return $this->end;
     }
 
     /**
@@ -525,106 +375,34 @@ class Project
     }
 
     /**
-     * Get costs
-     *
-     * @return Money
-     *
-     * @sicne 1.0.0
+     * {@inheritdoc}
      */
-    public function getCosts() : Money
+    public function toArray() : array
     {
-        return $this->costs;
+        return [
+            'id'           => $this->id,
+            'start'        => $this->start,
+            'end'          => $this->end,
+            'name'         => $this->name,
+            'description'  => $this->description,
+            'calendar'     => $this->calendar,
+            'costs'        => $this->costs,
+            'budgetCosts'       => $this->budgetCosts,
+            'budgetEarnings'       => $this->budgetEarnings,
+            'earnings'     => $this->earnings,
+            'tasks'        => $this->tasks,
+            'media'        => $this->media,
+            'progress'     => $this->progress,
+            'progressType' => $this->progressType,
+            'createdAt'    => $this->createdAt,
+        ];
     }
 
     /**
-     * Get budget costs
-     *
-     * @return Money
-     *
-     * @sicne 1.0.0
+     * {@inheritdoc}
      */
-    public function getBudgetCosts() : Money
+    public function jsonSerialize()
     {
-        return $this->budgetCosts;
-    }
-
-    /**
-     * Get budget earnings
-     *
-     * @return Money
-     *
-     * @sicne 1.0.0
-     */
-    public function getBudgetEarnings() : Money
-    {
-        return $this->budgetEarnings;
-    }
-
-    /**
-     * Get earnings
-     *
-     * @return Money
-     *
-     * @sicne 1.0.0
-     */
-    public function getEarnings() : Money
-    {
-        return $this->earnings;
-    }
-
-    /**
-     * Set costs
-     *
-     * @param Money $costs Costs
-     *
-     * @return void
-     *
-     * @since 1.0.0
-     */
-    public function setCosts(Money $costs) : void
-    {
-        $this->costs = $costs;
-    }
-
-    /**
-     * Set budget costs
-     *
-     * @param Money $budget Budget
-     *
-     * @return void
-     *
-     * @since 1.0.0
-     */
-    public function setBudgetCosts(Money $budget) : void
-    {
-        $this->budgetCosts = $budget;
-    }
-
-    /**
-     * Set budget earnings
-     *
-     * @param Money $budget Budget
-     *
-     * @return void
-     *
-     * @since 1.0.0
-     */
-    public function setBudgetEarnings(Money $budget) : void
-    {
-        $this->budgetEarnings = $budget;
-    }
-
-    /**
-     * Set earnings
-     *
-     * @param Money $earnings Earnings
-     *
-     * @return void
-     *
-     * @since 1.0.0
-     */
-    public function setEarnings(Money $earnings) : void
-    {
-        $this->earnings = $earnings;
+        return $this->toArray();
     }
 }

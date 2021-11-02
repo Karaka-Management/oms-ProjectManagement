@@ -39,16 +39,16 @@ final class ProjectMapperTest extends \PHPUnit\Framework\TestCase
         $project->setName('Projectname');
         $project->description = 'Description';
         $project->createdBy   = new NullAccount(1);
-        $project->setStart(new \DateTime('2000-05-05'));
-        $project->setEnd(new \DateTime('2005-05-05'));
+        $project->start = new \DateTime('2000-05-05');
+        $project->end = new \DateTime('2005-05-05');
 
         $money = new Money();
         $money->setString('1.23');
 
-        $project->setCosts($money);
-        $project->setBudgetCosts($money);
-        $project->setBudgetEarnings($money);
-        $project->setEarnings($money);
+        $project->costs = $money;
+        $project->budgetCosts = $money;
+        $project->budgetEarnings = $money;
+        $project->earnings = $money;
 
         $task        = new Task();
         $task->title = 'ProjectTask 1';
@@ -61,7 +61,7 @@ final class ProjectMapperTest extends \PHPUnit\Framework\TestCase
         $project->addTask($task);
         $project->addTask($task2);
 
-        $project->setProgress(10);
+        $project->progress = 10;
         $project->setProgressType(ProgressType::TASKS);
 
         $media              = new Media();
@@ -81,19 +81,18 @@ final class ProjectMapperTest extends \PHPUnit\Framework\TestCase
 
         self::assertEquals($project->getName(), $projectR->getName());
         self::assertEquals($project->description, $projectR->description);
-        self::assertEquals($project->countTasks(), $projectR->countTasks());
-        self::assertEquals($project->getCosts()->getAmount(), $projectR->getCosts()->getAmount());
-        self::assertEquals($project->getBudgetEarnings()->getAmount(), $projectR->getBudgetEarnings()->getAmount());
-        self::assertEquals($project->getBudgetCosts()->getAmount(), $projectR->getBudgetCosts()->getAmount());
-        self::assertEquals($project->getEarnings()->getAmount(), $projectR->getEarnings()->getAmount());
+        self::assertEquals($project->costs->getAmount(), $projectR->costs->getAmount());
+        self::assertEquals($project->budgetEarnings->getAmount(), $projectR->budgetEarnings->getAmount());
+        self::assertEquals($project->budgetCosts->getAmount(), $projectR->budgetCosts->getAmount());
+        self::assertEquals($project->earnings->getAmount(), $projectR->earnings->getAmount());
         self::assertEquals($project->createdAt->format('Y-m-d'), $projectR->createdAt->format('Y-m-d'));
-        self::assertEquals($project->getStart()->format('Y-m-d'), $projectR->getStart()->format('Y-m-d'));
-        self::assertEquals($project->getEnd()->format('Y-m-d'), $projectR->getEnd()->format('Y-m-d'));
-        self::assertEquals($project->getProgress(), $projectR->getProgress());
+        self::assertEquals($project->start->format('Y-m-d'), $projectR->start->format('Y-m-d'));
+        self::assertEquals($project->end->format('Y-m-d'), $projectR->end->format('Y-m-d'));
+        self::assertEquals($project->progress, $projectR->progress);
         self::assertEquals($project->getProgressType(), $projectR->getProgressType());
 
-        $expected = $project->getMedias();
-        $actual   = $projectR->getMedias();
+        $expected = $project->getMedia();
+        $actual   = $projectR->getMedia();
 
         self::assertEquals(\end($expected)->name, \end($actual)->name);
     }
@@ -107,37 +106,5 @@ final class ProjectMapperTest extends \PHPUnit\Framework\TestCase
         $newest = ProjectMapper::getNewest(1);
 
         self::assertCount(1, $newest);
-    }
-
-    /**
-     * @group volume
-     * @group module
-     * @coversNothing
-     */
-    public function testVolume() : void
-    {
-        for ($i = 1; $i < 100; ++$i) {
-            $text = new Text();
-
-            $project = new Project();
-
-            $project->setName($text->generateText(\mt_rand(3, 7)));
-            $project->description = $text->generateText(\mt_rand(20, 100));
-            $project->createdBy   = new NullAccount(1);
-            $project->setStart(new \DateTime('2000-05-05'));
-            $project->setEnd(new \DateTime('2005-05-05'));
-            $project->setProgress(\mt_rand(0, 100));
-            $project->setProgressType(\mt_rand(0, 4));
-
-            $money = new Money();
-            $money->setString('1.23');
-
-            $project->setCosts($money);
-            $project->setBudgetCosts($money);
-            $project->setBudgetEarnings($money);
-            $project->setEarnings($money);
-
-            $id = ProjectMapper::create($project);
-        }
     }
 }

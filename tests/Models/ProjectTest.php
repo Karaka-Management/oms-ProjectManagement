@@ -17,6 +17,7 @@ namespace Modules\ProjectManagement\tests\Models;
 use Modules\Admin\Models\NullAccount;
 use Modules\ProjectManagement\Models\ProgressType;
 use Modules\ProjectManagement\Models\Project;
+use Modules\Media\Models\Media;
 use Modules\Tasks\Models\Task;
 use phpOMS\Localization\Money;
 
@@ -25,83 +26,169 @@ use phpOMS\Localization\Money;
  */
 final class ProjectTest extends \PHPUnit\Framework\TestCase
 {
-    /**
-     * @covers Modules\ProjectManagement\Models\Project
-     * @group module
-     */
-    public function testDefault() : void
-    {
-        $project = new Project();
+    private Project $project;
 
-        self::assertEquals(0, $project->getId());
-        self::assertInstanceOf('\Modules\Calendar\Models\Calendar', $project->calendar);
-        self::assertEquals((new \DateTime('now'))->format('Y-m-d'), $project->createdAt->format('Y-m-d'));
-        self::assertEquals((new \DateTime('now'))->format('Y-m-d'), $project->getStart()->format('Y-m-d'));
-        self::assertEquals((new \DateTime('now'))->modify('+1 month')->format('Y-m-d'), $project->getEnd()->format('Y-m-d'));
-        self::assertEquals(0, $project->createdBy->getId());
-        self::assertEquals('', $project->getName());
-        self::assertEquals('', $project->description);
-        self::assertEquals(0, $project->getCosts()->getInt());
-        self::assertEquals(0, $project->getBudgetCosts()->getInt());
-        self::assertEquals(0, $project->getBudgetEarnings()->getInt());
-        self::assertEquals(0, $project->getEarnings()->getInt());
-        self::assertEquals(0, $project->getProgress());
-        self::assertEquals(ProgressType::MANUAL, $project->getProgressType());
-        self::assertEmpty($project->getTasks());
-        self::assertFalse($project->removeTask(2));
-        self::assertInstanceOf('\Modules\Tasks\Models\Task', $project->getTask(0));
+    /**
+     * {@inheritdoc}
+     */
+    protected function setUp() : void
+    {
+        $this->project = new Project();
     }
 
     /**
      * @covers Modules\ProjectManagement\Models\Project
      * @group module
      */
-    public function testSetGet() : void
+    public function testDefault() : void
     {
-        $project = new Project();
+        self::assertEquals(0, $this->project->getId());
+        self::assertInstanceOf('\Modules\Calendar\Models\Calendar', $this->project->calendar);
+        self::assertEquals((new \DateTime('now'))->format('Y-m-d'), $this->project->createdAt->format('Y-m-d'));
+        self::assertEquals((new \DateTime('now'))->format('Y-m-d'), $this->project->start->format('Y-m-d'));
+        self::assertEquals((new \DateTime('now'))->modify('+1 month')->format('Y-m-d'), $this->project->end->format('Y-m-d'));
+        self::assertEquals(0, $this->project->createdBy->getId());
+        self::assertEquals('', $this->project->getName());
+        self::assertEquals('', $this->project->description);
+        self::assertEquals(0, $this->project->costs->getInt());
+        self::assertEquals(0, $this->project->budgetCosts->getInt());
+        self::assertEquals(0, $this->project->budgetEarnings->getInt());
+        self::assertEquals(0, $this->project->earnings->getInt());
+        self::assertEquals(0, $this->project->progress);
+        self::assertEquals([], $this->project->getMedia());
+        self::assertEquals(ProgressType::MANUAL, $this->project->getProgressType());
+        self::assertEmpty($this->project->getTasks());
+        self::assertFalse($this->project->removeTask(2));
+        self::assertInstanceOf('\Modules\Tasks\Models\Task', $this->project->getTask(0));
+    }
 
-        $project->setName('Project');
-        self::assertEquals('Project', $project->getName());
+     /**
+     * @covers Modules\ProjectManagement\Models\Project
+     * @group module
+     */
+    public function testCreatedByInputOutput() : void
+    {
+        $this->project->createdBy = new NullAccount(1);
+        self::assertEquals(1, $this->project->createdBy->getId());
+    }
 
-        $project->description = 'Description';
-        self::assertEquals('Description', $project->description);
+    /**
+     * @covers Modules\ProjectManagement\Models\Project
+     * @group module
+     */
+    public function testNameInputOutput() : void
+    {
+        $this->project->setName('Name');
+        self::assertEquals('Name', $this->project->getName());
+    }
 
-        $project->setStart($date = new \DateTime('2000-05-05'));
-        self::assertEquals($date->format('Y-m-d'), $project->getStart()->format('Y-m-d'));
+    /**
+     * @covers Modules\ProjectManagement\Models\Project
+     * @group module
+     */
+    public function testDescriptionInputOutput() : void
+    {
+        $this->project->description = 'Description';
+        self::assertEquals('Description', $this->project->description);
+    }
 
-        $project->setEnd($date = new \DateTime('2000-05-05'));
-        self::assertEquals($date->format('Y-m-d'), $project->getEnd()->format('Y-m-d'));
+    /**
+     * @covers Modules\ProjectManagement\Models\Project
+     * @group module
+     */
+    public function testProgressInputOutput() : void
+    {
+        $this->project->progress = 10;
+        self::assertEquals(10, $this->project->progress);
+    }
 
-        $money = new Money();
-        $money->setString('1.23');
+    /**
+     * @covers Modules\ProjectManagement\Models\Project
+     * @group module
+     */
+    public function testProgressTypeInputOutput() : void
+    {
+        $this->project->setProgressType(ProgressType::TASKS);
+        self::assertEquals(ProgressType::TASKS, $this->project->getProgressType());
+    }
 
-        $project->setCosts($money);
-        self::assertEquals($money->getAmount(), $project->getCosts()->getAmount());
+    /**
+     * @covers Modules\ProjectManagement\Models\Project
+     * @group module
+     */
+    public function testMediaInputOutput() : void
+    {
+        $this->project->addMedia(new Media());
+        self::assertCount(1, $this->project->getMedia());
+    }
 
-        $project->setBudgetCosts($money);
-        self::assertEquals($money->getAmount(), $project->getBudgetCosts()->getAmount());
+    /**
+     * @covers Modules\ProjectManagement\Models\Project
+     * @group module
+     */
+    public function testMediaRemove() : void
+    {
+        $media = new Media();
 
-        $project->setBudgetEarnings($money);
-        self::assertEquals($money->getAmount(), $project->getBudgetEarnings()->getAmount());
+        $this->project->addMedia($media);
+        self::assertTrue($this->project->removeMedia(0));
+        self::assertCount(0, $this->project->getMedia());
+        self::assertFalse($this->project->removeMedia(0));
+    }
 
-        $project->setEarnings($money);
-        self::assertEquals($money->getAmount(), $project->getEarnings()->getAmount());
-
+    /**
+     * @covers Modules\ProjectManagement\Models\Project
+     * @group module
+     */
+    public function testTaskInputOutput() : void
+    {
         $task        = new Task();
         $task->title = 'A';
-        $task->setCreatedBy(new NullAccount(1));
 
-        $project->addTask($task);
+        $this->project->addTask($task);
+        self::assertEquals('A', $this->project->getTask(0)->title);
 
-        self::assertEquals('A', $project->getTask(0)->title);
-        self::assertCount(1, $project->getTasks());
-        self::assertTrue($project->removeTask(0));
-        self::assertEquals(0, $project->countTasks());
+        self::assertTrue($this->project->removeTask(0));
+        self::assertCount(0, $this->project->getTasks());
 
-        $project->setProgress(10);
-        self::assertEquals(10, $project->getProgress());
+        $this->project->addTask($task);
+        self::assertCount(1, $this->project->getTasks());
+    }
 
-        $project->setProgressType(ProgressType::TASKS);
-        self::assertEquals(ProgressType::TASKS, $project->getProgressType());
+    /**
+     * @covers Modules\ProjectManagement\Models\Project
+     * @group module
+     */
+    public function testSerialize() : void
+    {
+        $this->project->setName('Name');
+        $this->project->description = 'Description';
+        $this->project->start       = new \DateTime();
+        $this->project->end         = new \DateTime();
+        $this->project->progress = 10;
+        $this->project->setProgressType(ProgressType::TASKS);
+
+        $serialized = $this->project->jsonSerialize();
+        unset($serialized['calendar']);
+        unset($serialized['createdAt']);
+
+        self::assertEquals(
+            [
+                'id'           => 0,
+                'start'        => $this->project->start,
+                'end'          => $this->project->end,
+                'name'         => 'Name',
+                'description'  => 'Description',
+                'costs'        => new Money(),
+                'budgetCosts'       => new Money(),
+                'budgetEarnings'       => new Money(),
+                'earnings'     => new Money(),
+                'tasks'        => [],
+                'media'        => [],
+                'progress'     => 10,
+                'progressType' => ProgressType::TASKS,
+            ],
+            $serialized
+        );
     }
 }
