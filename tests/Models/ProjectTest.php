@@ -15,9 +15,9 @@ declare(strict_types=1);
 namespace Modules\ProjectManagement\tests\Models;
 
 use Modules\Admin\Models\NullAccount;
+use Modules\Media\Models\Media;
 use Modules\ProjectManagement\Models\ProgressType;
 use Modules\ProjectManagement\Models\Project;
-use Modules\Media\Models\Media;
 use Modules\Tasks\Models\Task;
 use phpOMS\Localization\Money;
 
@@ -62,7 +62,7 @@ final class ProjectTest extends \PHPUnit\Framework\TestCase
         self::assertInstanceOf('\Modules\Tasks\Models\Task', $this->project->getTask(0));
     }
 
-     /**
+    /**
      * @covers Modules\ProjectManagement\Models\Project
      * @group module
      */
@@ -165,7 +165,7 @@ final class ProjectTest extends \PHPUnit\Framework\TestCase
         $this->project->description = 'Description';
         $this->project->start       = new \DateTime();
         $this->project->end         = new \DateTime();
-        $this->project->progress = 10;
+        $this->project->progress    = 10;
         $this->project->setProgressType(ProgressType::TASKS);
 
         $serialized = $this->project->jsonSerialize();
@@ -174,19 +174,19 @@ final class ProjectTest extends \PHPUnit\Framework\TestCase
 
         self::assertEquals(
             [
-                'id'           => 0,
-                'start'        => $this->project->start,
-                'end'          => $this->project->end,
-                'name'         => 'Name',
-                'description'  => 'Description',
-                'costs'        => new Money(),
-                'budgetCosts'       => new Money(),
+                'id'                   => 0,
+                'start'                => $this->project->start,
+                'end'                  => $this->project->end,
+                'name'                 => 'Name',
+                'description'          => 'Description',
+                'costs'                => new Money(),
+                'budgetCosts'          => new Money(),
                 'budgetEarnings'       => new Money(),
-                'earnings'     => new Money(),
-                'tasks'        => [],
-                'media'        => [],
-                'progress'     => 10,
-                'progressType' => ProgressType::TASKS,
+                'earnings'             => new Money(),
+                'tasks'                => [],
+                'media'                => [],
+                'progress'             => 10,
+                'progressType'         => ProgressType::TASKS,
             ],
             $serialized
         );

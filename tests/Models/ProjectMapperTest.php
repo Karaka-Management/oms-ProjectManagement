@@ -21,7 +21,6 @@ use Modules\ProjectManagement\Models\Project;
 use Modules\ProjectManagement\Models\ProjectMapper;
 use Modules\Tasks\Models\Task;
 use phpOMS\Localization\Money;
-use phpOMS\Utils\RnG\Text;
 
 /**
  * @internal
@@ -39,16 +38,16 @@ final class ProjectMapperTest extends \PHPUnit\Framework\TestCase
         $project->setName('Projectname');
         $project->description = 'Description';
         $project->createdBy   = new NullAccount(1);
-        $project->start = new \DateTime('2000-05-05');
-        $project->end = new \DateTime('2005-05-05');
+        $project->start       = new \DateTime('2000-05-05');
+        $project->end         = new \DateTime('2005-05-05');
 
         $money = new Money();
         $money->setString('1.23');
 
-        $project->costs = $money;
-        $project->budgetCosts = $money;
+        $project->costs          = $money;
+        $project->budgetCosts    = $money;
         $project->budgetEarnings = $money;
-        $project->earnings = $money;
+        $project->earnings       = $money;
 
         $task        = new Task();
         $task->title = 'ProjectTask 1';

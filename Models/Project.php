@@ -18,7 +18,6 @@ use Modules\Admin\Models\Account;
 use Modules\Admin\Models\NullAccount;
 use Modules\Calendar\Models\Calendar;
 use Modules\Media\Models\Media;
-use Modules\Media\Models\NullMedia;
 use Modules\Tasks\Models\Task;
 use phpOMS\Localization\Money;
 
@@ -380,21 +379,21 @@ class Project
     public function toArray() : array
     {
         return [
-            'id'           => $this->id,
-            'start'        => $this->start,
-            'end'          => $this->end,
-            'name'         => $this->name,
-            'description'  => $this->description,
-            'calendar'     => $this->calendar,
-            'costs'        => $this->costs,
-            'budgetCosts'       => $this->budgetCosts,
+            'id'                   => $this->id,
+            'start'                => $this->start,
+            'end'                  => $this->end,
+            'name'                 => $this->name,
+            'description'          => $this->description,
+            'calendar'             => $this->calendar,
+            'costs'                => $this->costs,
+            'budgetCosts'          => $this->budgetCosts,
             'budgetEarnings'       => $this->budgetEarnings,
-            'earnings'     => $this->earnings,
-            'tasks'        => $this->tasks,
-            'media'        => $this->media,
-            'progress'     => $this->progress,
-            'progressType' => $this->progressType,
-            'createdAt'    => $this->createdAt,
+            'earnings'             => $this->earnings,
+            'tasks'                => $this->tasks,
+            'media'                => $this->media,
+            'progress'             => $this->progress,
+            'progressType'         => $this->progressType,
+            'createdAt'            => $this->createdAt,
         ];
     }
 
