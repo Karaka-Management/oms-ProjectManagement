@@ -31,8 +31,8 @@
                 "foreignTable": "calendar",
                 "foreignKey": "calendar_id"
             },
-            "projectmanagement_project_costs": {
-                "name": "projectmanagement_project_costs",
+            "projectmanagement_project_actualcosts": {
+                "name": "projectmanagement_project_actualcosts",
                 "type": "INT",
                 "null": false
             },
@@ -46,8 +46,8 @@
                 "type": "INT",
                 "null": false
             },
-            "projectmanagement_project_earnings": {
-                "name": "projectmanagement_project_earnings",
+            "projectmanagement_project_actualearnings": {
+                "name": "projectmanagement_project_actualearnings",
                 "type": "INT",
                 "null": false
             },
@@ -139,6 +139,198 @@
                 "null": false,
                 "foreignTable": "projectmanagement_project",
                 "foreignKey": "projectmanagement_project_id"
+            }
+        }
+    },
+    "projectmanagement_project_attr_type": {
+        "name": "projectmanagement_project_attr_type",
+        "fields": {
+            "projectmanagement_project_attr_type_id": {
+                "name": "projectmanagement_project_attr_type_id",
+                "type": "INT",
+                "null": false,
+                "primary": true,
+                "autoincrement": true
+            },
+            "projectmanagement_project_attr_type_name": {
+                "name": "projectmanagement_project_attr_type_name",
+                "type": "VARCHAR(255)",
+                "null": false
+            },
+            "projectmanagement_project_attr_type_fields": {
+                "name": "projectmanagement_project_attr_type_fields",
+                "type": "INT(11)",
+                "null": false
+            },
+            "projectmanagement_project_attr_type_custom": {
+                "name": "projectmanagement_project_attr_type_custom",
+                "type": "TINYINT(1)",
+                "null": false
+            },
+            "projectmanagement_project_attr_type_required": {
+                "description": "Every project must have this attribute type if set to true.",
+                "name": "projectmanagement_project_attr_type_required",
+                "type": "TINYINT(1)",
+                "null": false
+            },
+            "projectmanagement_project_attr_type_pattern": {
+                "description": "This is a regex validation pattern.",
+                "name": "projectmanagement_project_attr_type_pattern",
+                "type": "VARCHAR(255)",
+                "null": false
+            }
+        }
+    },
+    "projectmanagement_project_attr_type_l11n": {
+        "name": "projectmanagement_project_attr_type_l11n",
+        "fields": {
+            "projectmanagement_project_attr_type_l11n_id": {
+                "name": "projectmanagement_project_attr_type_l11n_id",
+                "type": "INT",
+                "null": false,
+                "primary": true,
+                "autoincrement": true
+            },
+            "projectmanagement_project_attr_type_l11n_title": {
+                "name": "projectmanagement_project_attr_type_l11n_title",
+                "type": "VARCHAR(255)",
+                "null": false
+            },
+            "projectmanagement_project_attr_type_l11n_type": {
+                "name": "projectmanagement_project_attr_type_l11n_type",
+                "type": "INT(11)",
+                "null": false,
+                "foreignTable": "projectmanagement_project_attr_type",
+                "foreignKey": "projectmanagement_project_attr_type_id"
+            },
+            "projectmanagement_project_attr_type_l11n_lang": {
+                "name": "projectmanagement_project_attr_type_l11n_lang",
+                "type": "VARCHAR(2)",
+                "null": false,
+                "foreignTable": "language",
+                "foreignKey": "language_639_1"
+            }
+        }
+    },
+    "projectmanagement_project_attr_value": {
+        "name": "projectmanagement_project_attr_value",
+        "fields": {
+            "projectmanagement_project_attr_value_id": {
+                "name": "projectmanagement_project_attr_value_id",
+                "type": "INT",
+                "null": false,
+                "primary": true,
+                "autoincrement": true
+            },
+            "projectmanagement_project_attr_value_default": {
+                "name": "projectmanagement_project_attr_value_default",
+                "type": "TINYINT(1)",
+                "null": false
+            },
+            "projectmanagement_project_attr_value_type": {
+                "name": "projectmanagement_project_attr_value_type",
+                "type": "INT(11)",
+                "null": false
+            },
+            "projectmanagement_project_attr_value_valueStr": {
+                "name": "projectmanagement_project_attr_value_valueStr",
+                "type": "VARCHAR(255)",
+                "null": true,
+                "default": null
+            },
+            "projectmanagement_project_attr_value_valueInt": {
+                "name": "projectmanagement_project_attr_value_valueInt",
+                "type": "INT(11)",
+                "null": true,
+                "default": null
+            },
+            "projectmanagement_project_attr_value_valueDec": {
+                "name": "projectmanagement_project_attr_value_valueDec",
+                "type": "DECIMAL(19,5)",
+                "null": true,
+                "default": null
+            },
+            "projectmanagement_project_attr_value_valueDat": {
+                "name": "projectmanagement_project_attr_value_valueDat",
+                "type": "DATETIME",
+                "null": true,
+                "default": null
+            },
+            "projectmanagement_project_attr_value_lang": {
+                "name": "projectmanagement_project_attr_value_lang",
+                "type": "VARCHAR(2)",
+                "null": true,
+                "default": null,
+                "foreignTable": "language",
+                "foreignKey": "language_639_1"
+            },
+            "projectmanagement_project_attr_value_country": {
+                "name": "projectmanagement_project_attr_value_country",
+                "type": "VARCHAR(2)",
+                "null": true,
+                "default": null,
+                "foreignTable": "country",
+                "foreignKey": "country_code2"
+            }
+        }
+    },
+    "projectmanagement_project_attr_default": {
+        "name": "projectmanagement_project_attr_default",
+        "fields": {
+            "projectmanagement_project_attr_default_id": {
+                "name": "projectmanagement_project_attr_default_id",
+                "type": "INT",
+                "null": false,
+                "primary": true,
+                "autoincrement": true
+            },
+            "projectmanagement_project_attr_default_type": {
+                "name": "projectmanagement_project_attr_default_type",
+                "type": "INT(11)",
+                "null": false,
+                "foreignTable": "projectmanagement_project_attr_type",
+                "foreignKey": "projectmanagement_project_attr_type_id"
+            },
+            "projectmanagement_project_attr_default_value": {
+                "name": "projectmanagement_project_attr_default_value",
+                "type": "INT(11)",
+                "null": false,
+                "foreignTable": "projectmanagement_project_attr_value",
+                "foreignKey": "projectmanagement_project_attr_value_id"
+            }
+        }
+    },
+    "projectmanagement_project_attr": {
+        "name": "projectmanagement_project_attr",
+        "fields": {
+            "projectmanagement_project_attr_id": {
+                "name": "projectmanagement_project_attr_id",
+                "type": "INT",
+                "null": false,
+                "primary": true,
+                "autoincrement": true
+            },
+            "projectmanagement_project_attr_project": {
+                "name": "projectmanagement_project_attr_project",
+                "type": "INT(11)",
+                "null": false,
+                "foreignTable": "projectmanagement_project",
+                "foreignKey": "projectmanagement_project_id"
+            },
+            "projectmanagement_project_attr_type": {
+                "name": "projectmanagement_project_attr_type",
+                "type": "INT(11)",
+                "null": false,
+                "foreignTable": "projectmanagement_project_attr_type",
+                "foreignKey": "projectmanagement_project_attr_type_id"
+            },
+            "projectmanagement_project_attr_value": {
+                "name": "projectmanagement_project_attr_value",
+                "type": "INT(11)",
+                "null": true,
+                "default": null,
+                "foreignTable": "projectmanagement_project_attr_value",
+                "foreignKey": "projectmanagement_project_attr_value_id"
             }
         }
     }

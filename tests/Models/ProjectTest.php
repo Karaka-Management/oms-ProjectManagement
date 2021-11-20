@@ -50,10 +50,10 @@ final class ProjectTest extends \PHPUnit\Framework\TestCase
         self::assertEquals(0, $this->project->createdBy->getId());
         self::assertEquals('', $this->project->getName());
         self::assertEquals('', $this->project->description);
-        self::assertEquals(0, $this->project->costs->getInt());
         self::assertEquals(0, $this->project->budgetCosts->getInt());
         self::assertEquals(0, $this->project->budgetEarnings->getInt());
-        self::assertEquals(0, $this->project->earnings->getInt());
+        self::assertEquals(0, $this->project->actualCosts->getInt());
+        self::assertEquals(0, $this->project->actualEarnings->getInt());
         self::assertEquals(0, $this->project->progress);
         self::assertEquals([], $this->project->getMedia());
         self::assertEquals(ProgressType::MANUAL, $this->project->getProgressType());
@@ -179,10 +179,10 @@ final class ProjectTest extends \PHPUnit\Framework\TestCase
                 'end'                  => $this->project->end,
                 'name'                 => 'Name',
                 'description'          => 'Description',
-                'costs'                => new Money(),
                 'budgetCosts'          => new Money(),
                 'budgetEarnings'       => new Money(),
-                'earnings'             => new Money(),
+                'actualCosts'             => new Money(),
+                'actualEarnings'             => new Money(),
                 'tasks'                => [],
                 'media'                => [],
                 'progress'             => 10,

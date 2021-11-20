@@ -96,14 +96,6 @@ class Project
     public Calendar $calendar;
 
     /**
-     * Current total costs.
-     *
-     * @var Money
-     * @since 1.0.0
-     */
-    public Money $costs;
-
-    /**
      * Budget costs.
      *
      * @var Money
@@ -120,12 +112,20 @@ class Project
     public Money $budgetEarnings;
 
     /**
+     * Current total costs.
+     *
+     * @var Money
+     * @since 1.0.0
+     */
+    public Money $actualCosts;
+
+    /**
      * Current total earnings.
      *
      * @var Money
      * @since 1.0.0
      */
-    public Money $earnings;
+    public Money $actualEarnings;
 
     /**
      * Progress percentage.
@@ -176,6 +176,14 @@ class Project
     private $tasks = [];
 
     /**
+     * Attributes.
+     *
+     * @var int[]|ProjectAttribute[]
+     * @since 1.0.0
+     */
+    private array $attributes = [];
+
+    /**
      * Constructor.
      *
      * @param string $name Name of the project
@@ -194,10 +202,10 @@ class Project
 
         $this->calendar = new Calendar();
 
-        $this->costs          = new Money();
+        $this->actualCosts    = new Money();
+        $this->actualEarnings = new Money();
         $this->budgetCosts    = new Money();
         $this->budgetEarnings = new Money();
-        $this->earnings       = new Money();
 
         $this->setName($name);
     }
@@ -374,6 +382,32 @@ class Project
     }
 
     /**
+     * Add attribute to item
+     *
+     * @param ProjectAttribute $attribute Note
+     *
+     * @return void
+     *
+     * @since 1.0.0
+     */
+    public function addAttribute(ProjectAttribute $attribute) : void
+    {
+        $this->attributes[] = $attribute;
+    }
+
+    /**
+     * Get attributes
+     *
+     * @return int[]|ProjectAttribute[]
+     *
+     * @since 1.0.0
+     */
+    public function getAttributes() : array
+    {
+        return $this->attributes;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function toArray() : array
@@ -385,10 +419,10 @@ class Project
             'name'                 => $this->name,
             'description'          => $this->description,
             'calendar'             => $this->calendar,
-            'costs'                => $this->costs,
             'budgetCosts'          => $this->budgetCosts,
             'budgetEarnings'       => $this->budgetEarnings,
-            'earnings'             => $this->earnings,
+            'actualCosts'          => $this->actualCosts,
+            'actualEarnings'       => $this->actualEarnings,
             'tasks'                => $this->tasks,
             'media'                => $this->media,
             'progress'             => $this->progress,

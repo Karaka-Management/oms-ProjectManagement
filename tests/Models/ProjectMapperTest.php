@@ -44,10 +44,10 @@ final class ProjectMapperTest extends \PHPUnit\Framework\TestCase
         $money = new Money();
         $money->setString('1.23');
 
-        $project->costs          = $money;
         $project->budgetCosts    = $money;
         $project->budgetEarnings = $money;
-        $project->earnings       = $money;
+        $project->actualCosts       = $money;
+        $project->actualEarnings          = $money;
 
         $task        = new Task();
         $task->title = 'ProjectTask 1';
@@ -80,10 +80,10 @@ final class ProjectMapperTest extends \PHPUnit\Framework\TestCase
 
         self::assertEquals($project->getName(), $projectR->getName());
         self::assertEquals($project->description, $projectR->description);
-        self::assertEquals($project->costs->getAmount(), $projectR->costs->getAmount());
         self::assertEquals($project->budgetEarnings->getAmount(), $projectR->budgetEarnings->getAmount());
         self::assertEquals($project->budgetCosts->getAmount(), $projectR->budgetCosts->getAmount());
-        self::assertEquals($project->earnings->getAmount(), $projectR->earnings->getAmount());
+        self::assertEquals($project->actualCosts->getAmount(), $projectR->actualCosts->getAmount());
+        self::assertEquals($project->actualEarnings->getAmount(), $projectR->actualEarnings->getAmount());
         self::assertEquals($project->createdAt->format('Y-m-d'), $projectR->createdAt->format('Y-m-d'));
         self::assertEquals($project->start->format('Y-m-d'), $projectR->start->format('Y-m-d'));
         self::assertEquals($project->end->format('Y-m-d'), $projectR->end->format('Y-m-d'));

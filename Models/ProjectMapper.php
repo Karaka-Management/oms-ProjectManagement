@@ -42,10 +42,10 @@ final class ProjectMapper extends DataMapperAbstract
         'projectmanagement_project_description'     => ['name' => 'projectmanagement_project_description',     'type' => 'string',       'internal' => 'description'],
         'projectmanagement_project_description_raw' => ['name' => 'projectmanagement_project_description_raw', 'type' => 'string',       'internal' => 'descriptionRaw'],
         'projectmanagement_project_calendar'        => ['name' => 'projectmanagement_project_calendar',        'type' => 'int',          'internal' => 'calendar'],
-        'projectmanagement_project_costs'           => ['name' => 'projectmanagement_project_costs',           'type' => 'Serializable', 'internal' => 'costs'],
         'projectmanagement_project_budgetcosts'     => ['name' => 'projectmanagement_project_budgetcosts',     'type' => 'Serializable', 'internal' => 'budgetCosts'],
         'projectmanagement_project_budgetearnings'  => ['name' => 'projectmanagement_project_budgetearnings',  'type' => 'Serializable', 'internal' => 'budgetEarnings'],
-        'projectmanagement_project_earnings'        => ['name' => 'projectmanagement_project_earnings',        'type' => 'Serializable', 'internal' => 'earnings'],
+        'projectmanagement_project_actualearnings'        => ['name' => 'projectmanagement_project_actualearnings',        'type' => 'Serializable', 'internal' => 'actualEarnings'],
+        'projectmanagement_project_actualcosts'        => ['name' => 'projectmanagement_project_actualcosts',        'type' => 'Serializable', 'internal' => 'actualCosts'],
         'projectmanagement_project_start'           => ['name' => 'projectmanagement_project_start',           'type' => 'DateTime',     'internal' => 'start'],
         'projectmanagement_project_end'             => ['name' => 'projectmanagement_project_end',             'type' => 'DateTime',     'internal' => 'end'],
         'projectmanagement_project_endestimated'    => ['name' => 'projectmanagement_project_endestimated',    'type' => 'DateTime',     'internal' => 'endEstimated'],
@@ -73,6 +73,13 @@ final class ProjectMapper extends DataMapperAbstract
             'table'    => 'projectmanagement_project_media',
             'external' => 'projectmanagement_project_media_dst',
             'self'     => 'projectmanagement_project_media_src',
+        ],
+        'attributes' => [
+            'mapper'      => ProjectAttributeMapper::class,
+            'table'       => 'projectmanagement_project_attr',
+            'self'        => 'projectmanagement_project_attr_project',
+            'conditional' => true,
+            'external'    => null,
         ],
     ];
 
