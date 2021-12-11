@@ -14,7 +14,7 @@ declare(strict_types=1);
 
 namespace Modules\ProjectManagement\Models;
 
-use phpOMS\DataStorage\Database\DataMapperAbstract;
+use phpOMS\DataStorage\Database\Mapper\DataMapperFactory;
 
 /**
  * Project mapper class.
@@ -24,7 +24,7 @@ use phpOMS\DataStorage\Database\DataMapperAbstract;
  * @link    https:   //orange-management.org
  * @since   1.0.0
  */
-final class ProjectAttributeValueMapper extends DataMapperAbstract
+final class ProjectAttributeValueMapper extends DataMapperFactory
 {
     /**
      * Columns.
@@ -32,7 +32,7 @@ final class ProjectAttributeValueMapper extends DataMapperAbstract
      * @var array<string, array{name:string, type:string, internal:string, autocomplete?:bool, readonly?:bool, writeonly?:bool, annotations?:array}>
      * @since 1.0.0
      */
-    protected static array $columns = [
+    public const COLUMNS = [
         'projectmanagement_project_attr_value_id'       => ['name' => 'projectmanagement_project_attr_value_id',       'type' => 'int',    'internal' => 'id'],
         'projectmanagement_project_attr_value_default'  => ['name' => 'projectmanagement_project_attr_value_default',  'type' => 'bool', 'internal' => 'isDefault'],
         'projectmanagement_project_attr_value_type'     => ['name' => 'projectmanagement_project_attr_value_type',     'type' => 'int',    'internal' => 'type'],
@@ -50,7 +50,7 @@ final class ProjectAttributeValueMapper extends DataMapperAbstract
      * @var string
      * @since 1.0.0
      */
-    protected static string $table = 'projectmanagement_project_attr_value';
+    public const TABLE = 'projectmanagement_project_attr_value';
 
     /**
      * Primary field name.
@@ -58,5 +58,5 @@ final class ProjectAttributeValueMapper extends DataMapperAbstract
      * @var string
      * @since 1.0.0
      */
-    protected static string $primaryField = 'projectmanagement_project_attr_value_id';
+    public const PRIMARYFIELD ='projectmanagement_project_attr_value_id';
 }

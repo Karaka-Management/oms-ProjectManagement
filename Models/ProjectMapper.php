@@ -18,7 +18,7 @@ use Modules\Admin\Models\AccountMapper;
 use Modules\Calendar\Models\CalendarMapper;
 use Modules\Media\Models\MediaMapper;
 use Modules\Tasks\Models\TaskMapper;
-use phpOMS\DataStorage\Database\DataMapperAbstract;
+use phpOMS\DataStorage\Database\Mapper\DataMapperFactory;
 
 /**
  * Mapper class.
@@ -28,7 +28,7 @@ use phpOMS\DataStorage\Database\DataMapperAbstract;
  * @link    https://orange-management.org
  * @since   1.0.0
  */
-final class ProjectMapper extends DataMapperAbstract
+final class ProjectMapper extends DataMapperFactory
 {
     /**
      * Columns.
@@ -36,7 +36,7 @@ final class ProjectMapper extends DataMapperAbstract
      * @var array<string, array{name:string, type:string, internal:string, autocomplete?:bool, readonly?:bool, writeonly?:bool, annotations?:array}>
      * @since 1.0.0
      */
-    protected static array $columns = [
+    public const COLUMNS = [
         'projectmanagement_project_id'              => ['name' => 'projectmanagement_project_id',              'type' => 'int',          'internal' => 'id'],
         'projectmanagement_project_name'            => ['name' => 'projectmanagement_project_name',            'type' => 'string',       'internal' => 'name'],
         'projectmanagement_project_description'     => ['name' => 'projectmanagement_project_description',     'type' => 'string',       'internal' => 'description'],
@@ -61,7 +61,7 @@ final class ProjectMapper extends DataMapperAbstract
      * @var array<string, array{mapper:string, table:string, self?:?string, external?:?string, column?:string}>
      * @since 1.0.0
      */
-    protected static array $hasMany = [
+    public const HAS_MANY = [
         'tasks' => [
             'mapper'   => TaskMapper::class,
             'table'    => 'projectmanagement_task_relation',
@@ -89,7 +89,7 @@ final class ProjectMapper extends DataMapperAbstract
      * @var array<string, array{mapper:string, external:string, by?:string, column?:string, conditional?:bool}>
      * @since 1.0.0
      */
-    protected static array $ownsOne = [
+    public const OWNS_ONE = [
         'calendar' => [
             'mapper'     => CalendarMapper::class,
             'external'   => 'projectmanagement_project_calendar',
@@ -102,7 +102,7 @@ final class ProjectMapper extends DataMapperAbstract
      * @var array<string, array{mapper:string, external:string}>
      * @since 1.0.0
      */
-    protected static array $belongsTo = [
+    public const BELONGS_TO = [
         'createdBy' => [
             'mapper'     => AccountMapper::class,
             'external'   => 'projectmanagement_project_created_by',
@@ -115,7 +115,7 @@ final class ProjectMapper extends DataMapperAbstract
      * @var string
      * @since 1.0.0
      */
-    protected static string $table = 'projectmanagement_project';
+    public const TABLE = 'projectmanagement_project';
 
     /**
      * Created at.
@@ -123,7 +123,7 @@ final class ProjectMapper extends DataMapperAbstract
      * @var string
      * @since 1.0.0
      */
-    protected static string $createdAt = 'projectmanagement_project_created_at';
+    public const CREATED_AT = 'projectmanagement_project_created_at';
 
     /**
      * Primary field name.
@@ -131,5 +131,5 @@ final class ProjectMapper extends DataMapperAbstract
      * @var string
      * @since 1.0.0
      */
-    protected static string $primaryField = 'projectmanagement_project_id';
+    public const PRIMARYFIELD ='projectmanagement_project_id';
 }

@@ -14,7 +14,7 @@ declare(strict_types=1);
 
 namespace Modules\ProjectManagement\Models;
 
-use phpOMS\DataStorage\Database\DataMapperAbstract;
+use phpOMS\DataStorage\Database\Mapper\DataMapperFactory;
 
 /**
  * Project mapper class.
@@ -24,7 +24,7 @@ use phpOMS\DataStorage\Database\DataMapperAbstract;
  * @link    https://orange-management.org
  * @since   1.0.0
  */
-final class ProjectAttributeMapper extends DataMapperAbstract
+final class ProjectAttributeMapper extends DataMapperFactory
 {
     /**
      * Columns.
@@ -32,7 +32,7 @@ final class ProjectAttributeMapper extends DataMapperAbstract
      * @var array<string, array{name:string, type:string, internal:string, autocomplete?:bool, readonly?:bool, writeonly?:bool, annotations?:array}>
      * @since 1.0.0
      */
-    protected static array $columns = [
+    public const COLUMNS = [
         'projectmanagement_project_attr_id'    => ['name' => 'projectmanagement_project_attr_id',    'type' => 'int', 'internal' => 'id'],
         'projectmanagement_project_attr_project'  => ['name' => 'projectmanagement_project_attr_project',  'type' => 'int', 'internal' => 'project'],
         'projectmanagement_project_attr_type'  => ['name' => 'projectmanagement_project_attr_type',  'type' => 'int', 'internal' => 'type'],
@@ -45,7 +45,7 @@ final class ProjectAttributeMapper extends DataMapperAbstract
      * @var array<string, array{mapper:string, external:string, by?:string, column?:string, conditional?:bool}>
      * @since 1.0.0
      */
-    protected static array $ownsOne = [
+    public const OWNS_ONE = [
         'type' => [
             'mapper'            => ProjectAttributeTypeMapper::class,
             'external'          => 'projectmanagement_project_attr_type',
@@ -62,7 +62,7 @@ final class ProjectAttributeMapper extends DataMapperAbstract
      * @var string
      * @since 1.0.0
      */
-    protected static string $table = 'projectmanagement_project_attr';
+    public const TABLE = 'projectmanagement_project_attr';
 
     /**
      * Primary field name.
@@ -70,5 +70,5 @@ final class ProjectAttributeMapper extends DataMapperAbstract
      * @var string
      * @since 1.0.0
      */
-    protected static string $primaryField = 'projectmanagement_project_attr_id';
+    public const PRIMARYFIELD ='projectmanagement_project_attr_id';
 }

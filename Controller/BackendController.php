@@ -17,6 +17,7 @@ namespace Modules\ProjectManagement\Controller;
 use Modules\ProjectManagement\Models\ProjectMapper;
 use phpOMS\Asset\AssetType;
 use phpOMS\Contract\RenderableInterface;
+use phpOMS\DataStorage\Database\Query\OrderType;
 use phpOMS\Message\RequestAbstract;
 use phpOMS\Message\ResponseAbstract;
 use phpOMS\Views\View;
@@ -50,7 +51,7 @@ final class BackendController extends Controller
         $view->setTemplate('/Modules/ProjectManagement/Theme/Backend/projectmanagement-list');
         $view->addData('nav', $this->app->moduleManager->get('Navigation')->createNavigationMid(1001701001, $request, $response));
 
-        $projects = ProjectMapper::getNewest(25);
+        $projects = ProjectMapper::getAll()->sort('id', OrderType::DESC)->limit(25);
         $view->addData('projects', $projects);
 
         return $view;
@@ -111,7 +112,7 @@ final class BackendController extends Controller
         $mediaListView->setTemplate('/Modules/Media/Theme/Backend/Components/Media/list');
         $view->addData('medialist', $mediaListView);
 
-        $project = ProjectMapper::get((int) $request->getData('id'));
+        $project = ProjectMapper::get()->where('id', (int) $request->getData('id'))->execute();
         $view->addData('project', $project);
 
         return $view;

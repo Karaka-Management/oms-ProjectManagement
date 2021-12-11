@@ -20,6 +20,7 @@ use Modules\ProjectManagement\Models\ProgressType;
 use Modules\ProjectManagement\Models\Project;
 use Modules\ProjectManagement\Models\ProjectMapper;
 use Modules\Tasks\Models\Task;
+use phpOMS\DataStorage\Database\Query\OrderType;
 use phpOMS\Localization\Money;
 
 /**
@@ -72,11 +73,11 @@ final class ProjectMapperTest extends \PHPUnit\Framework\TestCase
         $media->name      = 'Project Media';
         $project->addMedia($media);
 
-        $id = ProjectMapper::create($project);
+        $id = ProjectMapper::create()->execute($project);
         self::assertGreaterThan(0, $project->getId());
         self::assertEquals($id, $project->getId());
 
-        $projectR = ProjectMapper::get($project->getId());
+        $projectR = ProjectMapper::get()->with('media')->where('id', $project->getId())->execute();
 
         self::assertEquals($project->getName(), $projectR->getName());
         self::assertEquals($project->description, $projectR->description);
@@ -102,7 +103,7 @@ final class ProjectMapperTest extends \PHPUnit\Framework\TestCase
      */
     public function testNewest() : void
     {
-        $newest = ProjectMapper::getNewest(1);
+        $newest = ProjectMapper::getAll()->sort('id', OrderType::DESC)->limit(1)->execute();
 
         self::assertCount(1, $newest);
     }
