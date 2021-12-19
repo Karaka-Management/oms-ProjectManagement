@@ -105,7 +105,7 @@ class ProjectAttributeType implements \JsonSerializable, ArrayableInterface
      * Set l11n
      *
      * @param string|ProjectAttributeTypeL11n $l11n Tag article l11n
-     * @param string                       $lang Language
+     * @param string                          $lang Language
      *
      * @return void
      *

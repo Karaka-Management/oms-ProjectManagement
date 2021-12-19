@@ -33,12 +33,12 @@ final class ProjectAttributeTypeMapper extends DataMapperFactory
      * @since 1.0.0
      */
     public const COLUMNS = [
-        'projectmanagement_project_attr_type_id'       => ['name' => 'projectmanagement_project_attr_type_id',     'type' => 'int',    'internal' => 'id'],
-        'projectmanagement_project_attr_type_name'     => ['name' => 'projectmanagement_project_attr_type_name',   'type' => 'string', 'internal' => 'name', 'autocomplete' => true],
-        'projectmanagement_project_attr_type_fields'   => ['name' => 'projectmanagement_project_attr_type_fields', 'type' => 'int',    'internal' => 'fields'],
-        'projectmanagement_project_attr_type_custom'   => ['name' => 'projectmanagement_project_attr_type_custom', 'type' => 'bool', 'internal' => 'custom'],
-        'projectmanagement_project_attr_type_pattern'  => ['name' => 'projectmanagement_project_attr_type_pattern', 'type' => 'string', 'internal' => 'validationPattern'],
-        'projectmanagement_project_attr_type_required' => ['name' => 'projectmanagement_project_attr_type_required', 'type' => 'bool', 'internal' => 'isRequired'],
+        'projectmanagement_project_attr_type_id'       => ['name' => 'projectmanagement_project_attr_type_id',       'type' => 'int',    'internal' => 'id'],
+        'projectmanagement_project_attr_type_name'     => ['name' => 'projectmanagement_project_attr_type_name',     'type' => 'string', 'internal' => 'name', 'autocomplete' => true],
+        'projectmanagement_project_attr_type_fields'   => ['name' => 'projectmanagement_project_attr_type_fields',   'type' => 'int',    'internal' => 'fields'],
+        'projectmanagement_project_attr_type_custom'   => ['name' => 'projectmanagement_project_attr_type_custom',   'type' => 'bool',   'internal' => 'custom'],
+        'projectmanagement_project_attr_type_pattern'  => ['name' => 'projectmanagement_project_attr_type_pattern',  'type' => 'string', 'internal' => 'validationPattern'],
+        'projectmanagement_project_attr_type_required' => ['name' => 'projectmanagement_project_attr_type_required', 'type' => 'bool',   'internal' => 'isRequired'],
     ];
 
     /**
@@ -49,17 +49,17 @@ final class ProjectAttributeTypeMapper extends DataMapperFactory
      */
     public const HAS_MANY = [
         'l11n' => [
-            'mapper'            => ProjectAttributeTypeL11nMapper::class,
-            'table'             => 'projectmanagement_project_attr_type_l11n',
-            'self'              => 'projectmanagement_project_attr_type_l11n_type',
-            'column'            => 'title',
-            'external'          => null,
+            'mapper'   => ProjectAttributeTypeL11nMapper::class,
+            'table'    => 'projectmanagement_project_attr_type_l11n',
+            'self'     => 'projectmanagement_project_attr_type_l11n_type',
+            'column'   => 'title',
+            'external' => null,
         ],
         'defaults' => [
-            'mapper'            => ProjectAttributeValueMapper::class,
-            'table'             => 'projectmanagement_project_attr_default',
-            'self'              => 'projectmanagement_project_attr_default_type',
-            'external'          => 'projectmanagement_project_attr_default_value'
+            'mapper'   => ProjectAttributeValueMapper::class,
+            'table'    => 'projectmanagement_project_attr_default',
+            'self'     => 'projectmanagement_project_attr_default_type',
+            'external' => 'projectmanagement_project_attr_default_value'
         ],
     ];
 

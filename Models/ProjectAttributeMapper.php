@@ -33,10 +33,10 @@ final class ProjectAttributeMapper extends DataMapperFactory
      * @since 1.0.0
      */
     public const COLUMNS = [
-        'projectmanagement_project_attr_id'    => ['name' => 'projectmanagement_project_attr_id',    'type' => 'int', 'internal' => 'id'],
-        'projectmanagement_project_attr_project'  => ['name' => 'projectmanagement_project_attr_project',  'type' => 'int', 'internal' => 'project'],
-        'projectmanagement_project_attr_type'  => ['name' => 'projectmanagement_project_attr_type',  'type' => 'int', 'internal' => 'type'],
-        'projectmanagement_project_attr_value' => ['name' => 'projectmanagement_project_attr_value', 'type' => 'int', 'internal' => 'value'],
+        'projectmanagement_project_attr_id'      => ['name' => 'projectmanagement_project_attr_id',      'type' => 'int', 'internal' => 'id'],
+        'projectmanagement_project_attr_project' => ['name' => 'projectmanagement_project_attr_project', 'type' => 'int', 'internal' => 'project'],
+        'projectmanagement_project_attr_type'    => ['name' => 'projectmanagement_project_attr_type',    'type' => 'int', 'internal' => 'type'],
+        'projectmanagement_project_attr_value'   => ['name' => 'projectmanagement_project_attr_value',   'type' => 'int', 'internal' => 'value'],
     ];
 
     /**
@@ -47,12 +47,12 @@ final class ProjectAttributeMapper extends DataMapperFactory
      */
     public const OWNS_ONE = [
         'type' => [
-            'mapper'            => ProjectAttributeTypeMapper::class,
-            'external'          => 'projectmanagement_project_attr_type',
+            'mapper'   => ProjectAttributeTypeMapper::class,
+            'external' => 'projectmanagement_project_attr_type',
         ],
         'value' => [
-            'mapper'            => ProjectAttributeValueMapper::class,
-            'external'          => 'projectmanagement_project_attr_value',
+            'mapper'   => ProjectAttributeValueMapper::class,
+            'external' => 'projectmanagement_project_attr_value',
         ],
     ];
 

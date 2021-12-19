@@ -87,10 +87,10 @@ class ProjectAttribute implements \JsonSerializable, ArrayableInterface
     public function toArray() : array
     {
         return [
-            'id'    => $this->id,
-            'item'  => $this->item,
-            'type'  => $this->type,
-            'value' => $this->value,
+            'id'      => $this->id,
+            'project' => $this->project,
+            'type'    => $this->type,
+            'value'   => $this->value,
         ];
     }
 

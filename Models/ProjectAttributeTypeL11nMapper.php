@@ -33,10 +33,10 @@ final class ProjectAttributeTypeL11nMapper extends DataMapperFactory
      * @since 1.0.0
      */
     public const COLUMNS = [
-        'projectmanagement_project_attr_type_l11n_id'        => ['name' => 'projectmanagement_project_attr_type_l11n_id',       'type' => 'int',    'internal' => 'id'],
-        'projectmanagement_project_attr_type_l11n_title'     => ['name' => 'projectmanagement_project_attr_type_l11n_title',    'type' => 'string', 'internal' => 'title', 'autocomplete' => true],
-        'projectmanagement_project_attr_type_l11n_type'      => ['name' => 'projectmanagement_project_attr_type_l11n_type',      'type' => 'int',    'internal' => 'type'],
-        'projectmanagement_project_attr_type_l11n_lang'      => ['name' => 'projectmanagement_project_attr_type_l11n_lang', 'type' => 'string', 'internal' => 'language'],
+        'projectmanagement_project_attr_type_l11n_id'    => ['name' => 'projectmanagement_project_attr_type_l11n_id',    'type' => 'int',    'internal' => 'id'],
+        'projectmanagement_project_attr_type_l11n_title' => ['name' => 'projectmanagement_project_attr_type_l11n_title', 'type' => 'string', 'internal' => 'title', 'autocomplete' => true],
+        'projectmanagement_project_attr_type_l11n_type'  => ['name' => 'projectmanagement_project_attr_type_l11n_type',  'type' => 'int',    'internal' => 'type'],
+        'projectmanagement_project_attr_type_l11n_lang'  => ['name' => 'projectmanagement_project_attr_type_l11n_lang',  'type' => 'string', 'internal' => 'language'],
     ];
 
     /**
