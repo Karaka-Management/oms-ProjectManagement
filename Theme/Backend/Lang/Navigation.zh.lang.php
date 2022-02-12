@@ -13,5 +13,5 @@
 declare(strict_types=1);
 
 return ['Navigation' => [
-    'ProjectManagement' => 'Project Management',
+    'ProjectManagement' => '项目管理',
 ]];
