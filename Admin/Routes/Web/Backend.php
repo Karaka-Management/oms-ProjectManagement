@@ -13,7 +13,7 @@
 declare(strict_types=1);
 
 use Modules\ProjectManagement\Controller\BackendController;
-use Modules\ProjectManagement\Models\PermissionState;
+use Modules\ProjectManagement\Models\PermissionCategory;
 use phpOMS\Account\PermissionType;
 use phpOMS\Router\RouteVerb;
 
@@ -25,7 +25,7 @@ return [
             'permission' => [
                 'module' => BackendController::NAME,
                 'type'   => PermissionType::READ,
-                'state'  => PermissionState::PROJECT,
+                'state'  => PermissionCategory::PROJECT,
             ],
         ],
     ],
@@ -36,7 +36,7 @@ return [
             'permission' => [
                 'module' => BackendController::NAME,
                 'type'   => PermissionType::CREATE,
-                'state'  => PermissionState::PROJECT,
+                'state'  => PermissionCategory::PROJECT,
             ],
         ],
     ],
@@ -47,7 +47,7 @@ return [
             'permission' => [
                 'module' => BackendController::NAME,
                 'type'   => PermissionType::READ,
-                'state'  => PermissionState::PROJECT,
+                'state'  => PermissionCategory::PROJECT,
             ],
         ],
     ],
