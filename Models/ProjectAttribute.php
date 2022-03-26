@@ -14,7 +14,6 @@ declare(strict_types=1);
 
 namespace Modules\ProjectManagement\Models;
 
-use phpOMS\Contract\ArrayableInterface;
 
 /**
  * Project class.
@@ -24,7 +23,7 @@ use phpOMS\Contract\ArrayableInterface;
  * @link    https://karaka.app
  * @since   1.0.0
  */
-class ProjectAttribute implements \JsonSerializable, ArrayableInterface
+class ProjectAttribute implements \JsonSerializable
 {
     /**
      * Id.
