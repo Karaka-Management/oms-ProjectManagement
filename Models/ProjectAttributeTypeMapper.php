@@ -59,7 +59,7 @@ final class ProjectAttributeTypeMapper extends DataMapperFactory
             'mapper'   => ProjectAttributeValueMapper::class,
             'table'    => 'projectmanagement_project_attr_default',
             'self'     => 'projectmanagement_project_attr_default_type',
-            'external' => 'projectmanagement_project_attr_default_value'
+            'external' => 'projectmanagement_project_attr_default_value',
         ],
     ];
 

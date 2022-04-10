@@ -174,19 +174,19 @@ final class ProjectTest extends \PHPUnit\Framework\TestCase
 
         self::assertEquals(
             [
-                'id'                   => 0,
-                'start'                => $this->project->start,
-                'end'                  => $this->project->end,
-                'name'                 => 'Name',
-                'description'          => 'Description',
-                'budgetCosts'          => new Money(),
-                'budgetEarnings'       => new Money(),
-                'actualCosts'             => new Money(),
+                'id'                         => 0,
+                'start'                      => $this->project->start,
+                'end'                        => $this->project->end,
+                'name'                       => 'Name',
+                'description'                => 'Description',
+                'budgetCosts'                => new Money(),
+                'budgetEarnings'             => new Money(),
+                'actualCosts'                => new Money(),
                 'actualEarnings'             => new Money(),
-                'tasks'                => [],
-                'media'                => [],
-                'progress'             => 10,
-                'progressType'         => ProgressType::TASKS,
+                'tasks'                      => [],
+                'media'                      => [],
+                'progress'                   => 10,
+                'progressType'               => ProgressType::TASKS,
             ],
             $serialized
         );

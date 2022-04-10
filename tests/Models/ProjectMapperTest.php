@@ -45,9 +45,9 @@ final class ProjectMapperTest extends \PHPUnit\Framework\TestCase
         $money = new Money();
         $money->setString('1.23');
 
-        $project->budgetCosts    = $money;
-        $project->budgetEarnings = $money;
-        $project->actualCosts       = $money;
+        $project->budgetCosts             = $money;
+        $project->budgetEarnings          = $money;
+        $project->actualCosts             = $money;
         $project->actualEarnings          = $money;
 
         $task        = new Task();
