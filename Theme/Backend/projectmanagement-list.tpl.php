@@ -34,7 +34,7 @@ echo $this->getData('nav')->render(); ?>
                     <td><?= $this->getHtml('Due'); ?>
                 <tbody>
                 <?php $count = 0; foreach ($list as $key => $value) : ++$count;
-                $url         = \phpOMS\Uri\UriFactory::build('{/prefix}projectmanagement/profile?{?}&id=' . $value->getId()); ?>
+                $url         = \phpOMS\Uri\UriFactory::build('projectmanagement/profile?{?}&id=' . $value->getId()); ?>
                 <tr tabindex="0" data-href="<?= $url; ?>">
                     <td data-label="<?= $this->getHtml('Title'); ?>"><a href="<?= $url; ?>"><?= $this->printHtml($value->name); ?></a>
                     <td data-label="<?= $this->getHtml('Start'); ?>"><a href="<?= $url; ?>"><?= $this->printHtml($value->getStart()->format('Y-m-d')); ?></a>
