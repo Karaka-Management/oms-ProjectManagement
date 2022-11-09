@@ -35,4 +35,12 @@ final class NullProjectAttributeType extends ProjectAttributeType
     {
         $this->id = $id;
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function jsonSerialize() : mixed
+    {
+        return ['id' => $this->id];
+    }
 }
