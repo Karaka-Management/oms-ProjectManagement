@@ -148,6 +148,18 @@ class ProjectAttributeType implements \JsonSerializable
     }
 
     /**
+     * Get default values
+     *
+     * @return array
+     *
+     * @sicne 1.0.0
+     */
+    public function getDefaults() : array
+    {
+        return $this->defaults;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function toArray() : array
