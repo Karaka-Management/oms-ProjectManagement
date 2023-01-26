@@ -52,7 +52,7 @@ final class ProjectAttributeTypeMapper extends DataMapperFactory
             'mapper'   => ProjectAttributeTypeL11nMapper::class,
             'table'    => 'projectmanagement_project_attr_type_l11n',
             'self'     => 'projectmanagement_project_attr_type_l11n_type',
-            'column'   => 'title',
+            'column'   => 'content',
             'external' => null,
         ],
         'defaults' => [
