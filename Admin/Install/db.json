@@ -227,11 +227,6 @@
                 "type": "TINYINT(1)",
                 "null": false
             },
-            "projectmanagement_project_attr_value_type": {
-                "name": "projectmanagement_project_attr_value_type",
-                "type": "INT(11)",
-                "null": false
-            },
             "projectmanagement_project_attr_value_valueStr": {
                 "name": "projectmanagement_project_attr_value_valueStr",
                 "type": "VARCHAR(255)",

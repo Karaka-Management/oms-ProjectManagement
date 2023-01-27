@@ -124,7 +124,7 @@ class ProjectAttributeValue implements \JsonSerializable
     /**
      * Set value
      *
-     * @param int|string|float|\DateTimeInterface $value Value
+     * @param int|string|float $value Value
      *
      * @return void
      *
@@ -142,7 +142,7 @@ class ProjectAttributeValue implements \JsonSerializable
         } elseif ($datatype === AttributeValueType::_FLOAT) {
             $this->valueDec = (float) $value;
         } elseif ($datatype === AttributeValueType::_DATETIME) {
-            $this->valueDat = new \DateTime($value);
+            $this->valueDat = new \DateTime((string) $value);
         }
     }
 
@@ -172,7 +172,7 @@ class ProjectAttributeValue implements \JsonSerializable
      * Set l11n
      *
      * @param string|BaseStringL11n $l11n Tag article l11n
-     * @param string                        $lang Language
+     * @param string                $lang Language
      *
      * @return void
      *
@@ -183,11 +183,12 @@ class ProjectAttributeValue implements \JsonSerializable
         if ($l11n instanceof BaseStringL11n) {
             $this->l11n = $l11n;
         } elseif (isset($this->l11n) && $this->l11n instanceof BaseStringL11n) {
-            $this->l11n->content = $l11n;
+            $this->l11n->content  = $l11n;
+            $this->l11n->setLanguage($lang);
         } else {
-            $this->l11n        = new BaseStringL11n();
+            $this->l11n          = new BaseStringL11n();
             $this->l11n->content = $l11n;
-            $this->l11n->ref = $this->id;
+            $this->l11n->ref     = $this->id;
             $this->l11n->setLanguage($lang);
         }
     }
