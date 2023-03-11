@@ -70,5 +70,5 @@ final class ProjectAttributeMapper extends DataMapperFactory
      * @var string
      * @since 1.0.0
      */
-    public const PRIMARYFIELD ='projectmanagement_project_attr_id';
+    public const PRIMARYFIELD = 'projectmanagement_project_attr_id';
 }
