@@ -26,13 +26,13 @@ use phpOMS\Stdlib\Base\Enum;
  */
 abstract class ProjectStatus extends Enum
 {
-    public const ACTIVE = 0;
+    public const ACTIVE = 1;
 
-    public const INACTIVE = 1;
+    public const INACTIVE = 2;
 
-    public const HOLD = 2;
+    public const HOLD = 3;
 
-    public const CANCELED = 3;
+    public const CANCELED = 4;
 
-    public const FINISHED = 4;
+    public const FINISHED = 5;
 }
