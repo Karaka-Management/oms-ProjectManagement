@@ -21,7 +21,7 @@ use Modules\ProjectManagement\Models\Project;
 use Modules\ProjectManagement\Models\ProjectMapper;
 use Modules\Tasks\Models\Task;
 use phpOMS\DataStorage\Database\Query\OrderType;
-use phpOMS\Localization\Money;
+use phpOMS\Stdlib\Base\FloatInt;
 
 /**
  * @internal
@@ -42,7 +42,7 @@ final class ProjectMapperTest extends \PHPUnit\Framework\TestCase
         $project->start       = new \DateTime('2000-05-05');
         $project->end         = new \DateTime('2005-05-05');
 
-        $money = new Money();
+        $money = new FloatInt();
         $money->setString('1.23');
 
         $project->budgetCosts             = $money;
@@ -74,10 +74,10 @@ final class ProjectMapperTest extends \PHPUnit\Framework\TestCase
         $project->addMedia($media);
 
         $id = ProjectMapper::create()->execute($project);
-        self::assertGreaterThan(0, $project->getId());
-        self::assertEquals($id, $project->getId());
+        self::assertGreaterThan(0, $project->id);
+        self::assertEquals($id, $project->id);
 
-        $projectR = ProjectMapper::get()->with('media')->where('id', $project->getId())->execute();
+        $projectR = ProjectMapper::get()->with('media')->where('id', $project->id)->execute();
 
         self::assertEquals($project->getName(), $projectR->getName());
         self::assertEquals($project->description, $projectR->description);

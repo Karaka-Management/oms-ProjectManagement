@@ -19,7 +19,7 @@ use Modules\Admin\Models\NullAccount;
 use Modules\Calendar\Models\Calendar;
 use Modules\Media\Models\Media;
 use Modules\Tasks\Models\Task;
-use phpOMS\Localization\Money;
+use phpOMS\Stdlib\Base\FloatInt;
 
 /**
  * Project class.
@@ -37,7 +37,7 @@ class Project
      * @var int
      * @since 1.0.0
      */
-    protected int $id = 0;
+    public int $id = 0;
 
     /**
      * Start date.
@@ -98,34 +98,34 @@ class Project
     /**
      * Budget costs.
      *
-     * @var Money
+     * @var FloatInt
      * @since 1.0.0
      */
-    public Money $budgetCosts;
+    public FloatInt $budgetCosts;
 
     /**
      * Budget earnings.
      *
-     * @var Money
+     * @var FloatInt
      * @since 1.0.0
      */
-    public Money $budgetEarnings;
+    public FloatInt $budgetEarnings;
 
     /**
      * Current total costs.
      *
-     * @var Money
+     * @var FloatInt
      * @since 1.0.0
      */
-    public Money $actualCosts;
+    public FloatInt $actualCosts;
 
     /**
      * Current total earnings.
      *
-     * @var Money
+     * @var FloatInt
      * @since 1.0.0
      */
-    public Money $actualEarnings;
+    public FloatInt $actualEarnings;
 
     /**
      * Progress percentage.
@@ -202,10 +202,10 @@ class Project
 
         $this->calendar = new Calendar();
 
-        $this->actualCosts    = new Money();
-        $this->actualEarnings = new Money();
-        $this->budgetCosts    = new Money();
-        $this->budgetEarnings = new Money();
+        $this->actualCosts    = new FloatInt();
+        $this->actualEarnings = new FloatInt();
+        $this->budgetCosts    = new FloatInt();
+        $this->budgetEarnings = new FloatInt();
 
         $this->setName($name);
     }

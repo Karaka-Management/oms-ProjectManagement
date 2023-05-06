@@ -19,7 +19,7 @@ use Modules\Media\Models\Media;
 use Modules\ProjectManagement\Models\ProgressType;
 use Modules\ProjectManagement\Models\Project;
 use Modules\Tasks\Models\Task;
-use phpOMS\Localization\Money;
+use phpOMS\Stdlib\Base\FloatInt;
 
 /**
  * @internal
@@ -42,12 +42,12 @@ final class ProjectTest extends \PHPUnit\Framework\TestCase
      */
     public function testDefault() : void
     {
-        self::assertEquals(0, $this->project->getId());
+        self::assertEquals(0, $this->project->id);
         self::assertInstanceOf('\Modules\Calendar\Models\Calendar', $this->project->calendar);
         self::assertEquals((new \DateTime('now'))->format('Y-m-d'), $this->project->createdAt->format('Y-m-d'));
         self::assertEquals((new \DateTime('now'))->format('Y-m-d'), $this->project->start->format('Y-m-d'));
         self::assertEquals((new \DateTime('now'))->modify('+1 month')->format('Y-m-d'), $this->project->end->format('Y-m-d'));
-        self::assertEquals(0, $this->project->createdBy->getId());
+        self::assertEquals(0, $this->project->createdBy->id);
         self::assertEquals('', $this->project->getName());
         self::assertEquals('', $this->project->description);
         self::assertEquals(0, $this->project->budgetCosts->getInt());
@@ -69,7 +69,7 @@ final class ProjectTest extends \PHPUnit\Framework\TestCase
     public function testCreatedByInputOutput() : void
     {
         $this->project->createdBy = new NullAccount(1);
-        self::assertEquals(1, $this->project->createdBy->getId());
+        self::assertEquals(1, $this->project->createdBy->id);
     }
 
     /**
@@ -179,10 +179,10 @@ final class ProjectTest extends \PHPUnit\Framework\TestCase
                 'end'                        => $this->project->end,
                 'name'                       => 'Name',
                 'description'                => 'Description',
-                'budgetCosts'                => new Money(),
-                'budgetEarnings'             => new Money(),
-                'actualCosts'                => new Money(),
-                'actualEarnings'             => new Money(),
+                'budgetCosts'                => new FloatInt(),
+                'budgetEarnings'             => new FloatInt(),
+                'actualCosts'                => new FloatInt(),
+                'actualEarnings'             => new FloatInt(),
                 'tasks'                      => [],
                 'media'                      => [],
                 'progress'                   => 10,
