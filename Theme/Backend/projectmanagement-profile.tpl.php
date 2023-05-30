@@ -12,9 +12,9 @@
  */
 declare(strict_types=1);
 
-$project = $this->getData('project');
+$project = $this->data['project'];
 
-echo $this->getData('nav')->render(); ?>
+echo $this->data['nav']->render(); ?>
 
 <div class="row">
     <div class="col-xs-12 col-md-6">
