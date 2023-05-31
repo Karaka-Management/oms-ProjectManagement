@@ -51,7 +51,7 @@ final class BackendController extends Controller
         $view->setTemplate('/Modules/ProjectManagement/Theme/Backend/projectmanagement-list');
         $view->data['nav'] = $this->app->moduleManager->get('Navigation')->createNavigationMid(1001701001, $request, $response);
 
-        $projects = ProjectMapper::getAll()->sort('id', OrderType::DESC)->limit(25);
+        $projects               = ProjectMapper::getAll()->sort('id', OrderType::DESC)->limit(25);
         $view->data['projects'] = $projects;
 
         return $view;
@@ -112,7 +112,7 @@ final class BackendController extends Controller
         $mediaListView->setTemplate('/Modules/Media/Theme/Backend/Components/Media/list');
         $view->data['medialist'] = $mediaListView;
 
-        $project = ProjectMapper::get()->where('id', (int) $request->getData('id'))->execute();
+        $project               = ProjectMapper::get()->where('id', (int) $request->getData('id'))->execute();
         $view->data['project'] = $project;
 
         return $view;
