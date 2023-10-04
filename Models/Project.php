@@ -149,7 +149,7 @@ class Project
      * @var array<int, int|media>
      * @since 1.0.0
      */
-    private array $media = [];
+    public array $media = [];
 
     /**
      * Created at.
@@ -173,7 +173,7 @@ class Project
      * @var Task[]
      * @since 1.0.0
      */
-    private $tasks = [];
+    public $tasks = [];
 
     /**
      * Attributes.
@@ -181,7 +181,7 @@ class Project
      * @var int[]|ProjectAttribute[]
      * @since 1.0.0
      */
-    private array $attributes = [];
+    public array $attributes = [];
 
     /**
      * Constructor.
