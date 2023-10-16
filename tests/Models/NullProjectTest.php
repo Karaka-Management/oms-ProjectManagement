@@ -23,7 +23,7 @@ final class NullProjectTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @covers Modules\ProjectManagement\Models\NullProject
-     * @group framework
+     * @group module
      */
     public function testNull() : void
     {
@@ -32,11 +32,21 @@ final class NullProjectTest extends \PHPUnit\Framework\TestCase
 
     /**
      * @covers Modules\ProjectManagement\Models\NullProject
-     * @group framework
+     * @group module
      */
     public function testId() : void
     {
         $null = new NullProject(2);
         self::assertEquals(2, $null->id);
+    }
+
+    /**
+     * @covers Modules\ProjectManagement\Models\NullProject
+     * @group module
+     */
+    public function testJsonSerialize() : void
+    {
+        $null = new NullProject(2);
+        self::assertEquals(['id' => 2], $null);
     }
 }
