@@ -37,7 +37,7 @@ final class NullProjectAttributeTest extends \PHPUnit\Framework\TestCase
     public function testId() : void
     {
         $null = new NullProjectAttribute(2);
-        self::assertEquals(2, $null->getId());
+        self::assertEquals(2, $null->id);
     }
 
     /**
