@@ -41,7 +41,7 @@ class ProjectAttributeType implements \JsonSerializable
      * @var string
      * @since 1.0.0
      */
-    public string $name = ''; // @todo: currently not filled, should be used as identifier or if not required removed (at the moment it seems like it is useless?!)
+    public string $name = ''; // @todo currently not filled, should be used as identifier or if not required removed (at the moment it seems like it is useless?!)
 
     /**
      * Which field data type is required (string, int, ...) in the value
