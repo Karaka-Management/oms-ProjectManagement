@@ -25,7 +25,7 @@ echo $this->data['nav']->render(); ?>
                     <table class="layout wf-100">
                         <tbody>
                         <tr><td colspan="2"><label for="iName"><?= $this->getHtml('Name'); ?></label>
-                        <tr><td colspan="2"><input type="text" id="iName" name="name" placeholder="&#xf007; Name" value="<?= $this->printHtml($project->getName()); ?>" required>
+                        <tr><td colspan="2"><input type="text" id="iName" name="name" placeholder="Name" value="<?= $this->printHtml($project->getName()); ?>" required>
                         <tr><td><label for="iStart"><?= $this->getHtml('Start'); ?></label>
                             <td><label for="iEnd"><?= $this->getHtml('End'); ?></label>
                         <tr><td><input type="datetime-local" id="iStart" name="start" value="<?= $this->printHtml($project->getStart()->format('Y-m-d\TH:i:s')); ?>">
