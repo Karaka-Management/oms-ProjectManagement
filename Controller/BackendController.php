@@ -90,14 +90,14 @@ final class BackendController extends Controller
      * @since 1.0.0
      * @codeCoverageIgnore
      */
-    public function viewProjectManagementProfile(RequestAbstract $request, ResponseAbstract $response, array $data = []) : RenderableInterface
+    public function viewProjectManagementView(RequestAbstract $request, ResponseAbstract $response, array $data = []) : RenderableInterface
     {
         /** @var \phpOMS\Model\Html\Head $head */
         $head = $response->data['Content']->head;
         $head->addAsset(AssetType::CSS, '/Modules/Calendar/Theme/Backend/css/styles.css?v=1.0.0');
 
         $view = new View($this->app->l11nManager, $request, $response);
-        $view->setTemplate('/Modules/ProjectManagement/Theme/Backend/projectmanagement-profile');
+        $view->setTemplate('/Modules/ProjectManagement/Theme/Backend/projectmanagement-view');
         $view->data['nav'] = $this->app->moduleManager->get('Navigation')->createNavigationMid(1001701001, $request, $response);
 
         $taskListView = new \Modules\Tasks\Theme\Backend\Components\Tasks\ListView($this->app->l11nManager, $request, $response);

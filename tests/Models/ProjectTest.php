@@ -15,10 +15,8 @@ declare(strict_types=1);
 namespace Modules\ProjectManagement\tests\Models;
 
 use Modules\Admin\Models\NullAccount;
-use Modules\Media\Models\Media;
 use Modules\ProjectManagement\Models\ProgressType;
 use Modules\ProjectManagement\Models\Project;
-use Modules\Tasks\Models\Task;
 use phpOMS\Stdlib\Base\FloatInt;
 
 /**
@@ -55,11 +53,9 @@ final class ProjectTest extends \PHPUnit\Framework\TestCase
         self::assertEquals(0, $this->project->actualCosts->getInt());
         self::assertEquals(0, $this->project->actualEarnings->getInt());
         self::assertEquals(0, $this->project->progress);
-        self::assertEquals([], $this->project->getMedia());
+        self::assertEquals([], $this->project->files);
         self::assertEquals(ProgressType::MANUAL, $this->project->getProgressType());
-        self::assertEmpty($this->project->getTasks());
-        self::assertFalse($this->project->removeTask(2));
-        self::assertInstanceOf('\Modules\Tasks\Models\Task', $this->project->getTask(0));
+        self::assertEmpty($this->project->tasks);
     }
 
     /**
@@ -116,49 +112,6 @@ final class ProjectTest extends \PHPUnit\Framework\TestCase
      * @covers Modules\ProjectManagement\Models\Project
      * @group module
      */
-    public function testMediaInputOutput() : void
-    {
-        $this->project->addMedia(new Media());
-        self::assertCount(1, $this->project->getMedia());
-    }
-
-    /**
-     * @covers Modules\ProjectManagement\Models\Project
-     * @group module
-     */
-    public function testMediaRemove() : void
-    {
-        $media = new Media();
-
-        $this->project->addMedia($media);
-        self::assertTrue($this->project->removeMedia(0));
-        self::assertCount(0, $this->project->getMedia());
-        self::assertFalse($this->project->removeMedia(0));
-    }
-
-    /**
-     * @covers Modules\ProjectManagement\Models\Project
-     * @group module
-     */
-    public function testTaskInputOutput() : void
-    {
-        $task        = new Task();
-        $task->title = 'A';
-
-        $this->project->addTask($task);
-        self::assertEquals('A', $this->project->getTask(0)->title);
-
-        self::assertTrue($this->project->removeTask(0));
-        self::assertCount(0, $this->project->getTasks());
-
-        $this->project->addTask($task);
-        self::assertCount(1, $this->project->getTasks());
-    }
-
-    /**
-     * @covers Modules\ProjectManagement\Models\Project
-     * @group module
-     */
     public function testSerialize() : void
     {
         $this->project->setName('Name');
@@ -174,19 +127,19 @@ final class ProjectTest extends \PHPUnit\Framework\TestCase
 
         self::assertEquals(
             [
-                'id'                         => 0,
-                'start'                      => $this->project->start,
-                'end'                        => $this->project->end,
-                'name'                       => 'Name',
-                'description'                => 'Description',
-                'budgetCosts'                => new FloatInt(),
-                'budgetEarnings'             => new FloatInt(),
-                'actualCosts'                => new FloatInt(),
-                'actualEarnings'             => new FloatInt(),
-                'tasks'                      => [],
-                'media'                      => [],
-                'progress'                   => 10,
-                'progressType'               => ProgressType::TASKS,
+                'id'             => 0,
+                'start'          => $this->project->start,
+                'end'            => $this->project->end,
+                'name'           => 'Name',
+                'description'    => 'Description',
+                'budgetCosts'    => new FloatInt(),
+                'budgetEarnings' => new FloatInt(),
+                'actualCosts'    => new FloatInt(),
+                'actualEarnings' => new FloatInt(),
+                'tasks'          => [],
+                'media'          => [],
+                'progress'       => 10,
+                'progressType'   => ProgressType::TASKS,
             ],
             $serialized
         );

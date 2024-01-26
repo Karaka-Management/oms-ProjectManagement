@@ -12,7 +12,7 @@
  */
 declare(strict_types=1);
 
-$footerView   = new \phpOMS\Views\PaginationView($this->l11nManager, $this->request, $this->response);
+$footerView = new \phpOMS\Views\PaginationView($this->l11nManager, $this->request, $this->response);
 $footerView->setTemplate('/Web/Templates/Lists/Footer/PaginationBig');
 $footerView->setPages(20);
 $footerView->setPage(1);
@@ -34,7 +34,7 @@ echo $this->data['nav']->render(); ?>
                     <td><?= $this->getHtml('Due'); ?>
                 <tbody>
                 <?php $count = 0; foreach ($list as $key => $value) : ++$count;
-                $url         = \phpOMS\Uri\UriFactory::build('projectmanagement/profile?{?}&id=' . $value->id); ?>
+                $url         = \phpOMS\Uri\UriFactory::build('projectmanagement/view?{?}&id=' . $value->id); ?>
                 <tr tabindex="0" data-href="<?= $url; ?>">
                     <td data-label="<?= $this->getHtml('Title'); ?>"><a href="<?= $url; ?>"><?= $this->printHtml($value->name); ?></a>
                     <td data-label="<?= $this->getHtml('Start'); ?>"><a href="<?= $url; ?>"><?= $this->printHtml($value->getStart()->format('Y-m-d')); ?></a>

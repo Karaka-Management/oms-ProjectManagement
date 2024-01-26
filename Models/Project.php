@@ -17,7 +17,6 @@ namespace Modules\ProjectManagement\Models;
 use Modules\Admin\Models\Account;
 use Modules\Admin\Models\NullAccount;
 use Modules\Calendar\Models\Calendar;
-use Modules\Media\Models\Media;
 use Modules\Tasks\Models\Task;
 use phpOMS\Stdlib\Base\FloatInt;
 
@@ -144,14 +143,6 @@ class Project
     public int $progressType = ProgressType::MANUAL;
 
     /**
-     * Media files.
-     *
-     * @var array<int, int|media>
-     * @since 1.0.0
-     */
-    public array $media = [];
-
-    /**
      * Created at.
      *
      * @var \DateTimeImmutable
@@ -174,14 +165,6 @@ class Project
      * @since 1.0.0
      */
     public $tasks = [];
-
-    /**
-     * Attributes.
-     *
-     * @var int[]|ProjectAttribute[]
-     * @since 1.0.0
-     */
-    public array $attributes = [];
 
     /**
      * Constructor.
@@ -211,98 +194,6 @@ class Project
     }
 
     /**
-     * Get id.
-     *
-     * @return int
-     *
-     * @since 1.0.0
-     */
-    public function getId() : int
-    {
-        return $this->id;
-    }
-
-    /**
-     * Get all media files.
-     *
-     * @return array<int, int|Media>
-     *
-     * @since 1.0.0
-     */
-    public function getMedia() : array
-    {
-        return $this->media;
-    }
-
-    /**
-     * Add media
-     *
-     * @param int|Media $media Media
-     *
-     * @return void
-     *
-     * @since 1.0.0
-     */
-    public function addMedia($media) : void
-    {
-        $this->media[] = $media;
-    }
-
-    /**
-     * Remove media
-     *
-     * @param int $id Media id
-     *
-     * @return bool
-     *
-     * @since 1.0.0
-     */
-    public function removeMedia(int $id) : bool
-    {
-        if (isset($this->media[$id])) {
-            unset($this->media[$id]);
-
-            return true;
-        }
-
-        return false;
-    }
-
-    /**
-     * Add task
-     *
-     * @param Task $task Task
-     *
-     * @return void
-     *
-     * @since 1.0.0
-     */
-    public function addTask(Task $task) : void
-    {
-        $this->tasks[] = $task;
-    }
-
-    /**
-     * Remove task
-     *
-     * @param int $id Task id
-     *
-     * @return bool
-     *
-     * @since 1.0.0
-     */
-    public function removeTask(int $id) : bool
-    {
-        if (isset($this->tasks[$id])) {
-            unset($this->tasks[$id]);
-
-            return true;
-        }
-
-        return false;
-    }
-
-    /**
      * Get progress type
      *
      * @return int
@@ -326,32 +217,6 @@ class Project
     public function setProgressType(int $type) : void
     {
         $this->progressType = $type;
-    }
-
-    /**
-     * Get task
-     *
-     * @param int $id Task id
-     *
-     * @return Task
-     *
-     * @since 1.0.0
-     */
-    public function getTask(int $id) : Task
-    {
-        return $this->tasks[$id] ?? new Task();
-    }
-
-    /**
-     * Get tasks
-     *
-     * @return Task[]
-     *
-     * @since 1.0.0
-     */
-    public function getTasks() : array
-    {
-        return $this->tasks;
     }
 
     /**
@@ -382,52 +247,26 @@ class Project
     }
 
     /**
-     * Add attribute to item
-     *
-     * @param ProjectAttribute $attribute Note
-     *
-     * @return void
-     *
-     * @since 1.0.0
-     */
-    public function addAttribute(ProjectAttribute $attribute) : void
-    {
-        $this->attributes[] = $attribute;
-    }
-
-    /**
-     * Get attributes
-     *
-     * @return int[]|ProjectAttribute[]
-     *
-     * @since 1.0.0
-     */
-    public function getAttributes() : array
-    {
-        return $this->attributes;
-    }
-
-    /**
      * {@inheritdoc}
      */
     public function toArray() : array
     {
         return [
-            'id'                   => $this->id,
-            'start'                => $this->start,
-            'end'                  => $this->end,
-            'name'                 => $this->name,
-            'description'          => $this->description,
-            'calendar'             => $this->calendar,
-            'budgetCosts'          => $this->budgetCosts,
-            'budgetEarnings'       => $this->budgetEarnings,
-            'actualCosts'          => $this->actualCosts,
-            'actualEarnings'       => $this->actualEarnings,
-            'tasks'                => $this->tasks,
-            'media'                => $this->media,
-            'progress'             => $this->progress,
-            'progressType'         => $this->progressType,
-            'createdAt'            => $this->createdAt,
+            'id'             => $this->id,
+            'start'          => $this->start,
+            'end'            => $this->end,
+            'name'           => $this->name,
+            'description'    => $this->description,
+            'calendar'       => $this->calendar,
+            'budgetCosts'    => $this->budgetCosts,
+            'budgetEarnings' => $this->budgetEarnings,
+            'actualCosts'    => $this->actualCosts,
+            'actualEarnings' => $this->actualEarnings,
+            'tasks'          => $this->tasks,
+            'media'          => $this->files,
+            'progress'       => $this->progress,
+            'progressType'   => $this->progressType,
+            'createdAt'      => $this->createdAt,
         ];
     }
 
@@ -438,4 +277,7 @@ class Project
     {
         return $this->toArray();
     }
+
+    use \Modules\Media\Models\MediaListTrait;
+    use \Modules\Attribute\Models\AttributeHolderTrait;
 }

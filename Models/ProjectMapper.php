@@ -71,7 +71,7 @@ final class ProjectMapper extends DataMapperFactory
             'external' => 'projectmanagement_task_relation_src',
             'self'     => 'projectmanagement_task_relation_dst',
         ],
-        'media' => [
+        'files' => [
             'mapper'   => MediaMapper::class,
             'table'    => 'projectmanagement_project_media',
             'external' => 'projectmanagement_project_media_dst',

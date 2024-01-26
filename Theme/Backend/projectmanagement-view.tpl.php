@@ -52,7 +52,7 @@ echo $this->data['nav']->render(); ?>
 
     <div class="col-xs-12 col-md-6">
         <div class="box wf-100">
-            <?= $this->getData('tasklist')->render($project->getTasks()); ?>
+            <?= $this->getData('tasklist')->render($project->tasks); ?>
         </div>
     </div>
 </div>
@@ -63,7 +63,7 @@ echo $this->data['nav']->render(); ?>
     </div>
 
     <div class="col-xs-12 col-md-6">
-        <?= $this->getData('medialist')->render($project->getMedia()); ?>
+        <?= $this->getData('medialist')->render($project->files); ?>
     </div>
 </div>
 

@@ -170,13 +170,13 @@ class ProjectAttributeValue implements \JsonSerializable
         if ($l11n instanceof BaseStringL11n) {
             $this->l11n = $l11n;
         } elseif (isset($this->l11n) && $this->l11n instanceof BaseStringL11n) {
-            $this->l11n->content = $l11n;
-            $this->l11n->setLanguage($lang);
+            $this->l11n->content  = $l11n;
+            $this->l11n->language = $lang;
         } else {
-            $this->l11n          = new BaseStringL11n();
-            $this->l11n->content = $l11n;
-            $this->l11n->ref     = $this->id;
-            $this->l11n->setLanguage($lang);
+            $this->l11n           = new BaseStringL11n();
+            $this->l11n->content  = $l11n;
+            $this->l11n->ref      = $this->id;
+            $this->l11n->language = $lang;
         }
     }
 

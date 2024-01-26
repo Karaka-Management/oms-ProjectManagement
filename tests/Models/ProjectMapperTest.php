@@ -45,10 +45,10 @@ final class ProjectMapperTest extends \PHPUnit\Framework\TestCase
         $money = new FloatInt();
         $money->setString('1.23');
 
-        $project->budgetCosts             = $money;
-        $project->budgetEarnings          = $money;
-        $project->actualCosts             = $money;
-        $project->actualEarnings          = $money;
+        $project->budgetCosts    = $money;
+        $project->budgetEarnings = $money;
+        $project->actualCosts    = $money;
+        $project->actualEarnings = $money;
 
         $task        = new Task();
         $task->title = 'ProjectTask 1';
@@ -58,8 +58,8 @@ final class ProjectMapperTest extends \PHPUnit\Framework\TestCase
         $task2->title = 'ProjectTask 2';
         $task2->setCreatedBy(new NullAccount(1));
 
-        $project->addTask($task);
-        $project->addTask($task2);
+        $project->tasks[] = $task;
+        $project->tasks[] = $task2;
 
         $project->progress = 10;
         $project->setProgressType(ProgressType::TASKS);
@@ -71,13 +71,13 @@ final class ProjectMapperTest extends \PHPUnit\Framework\TestCase
         $media->size      = 11;
         $media->extension = 'png';
         $media->name      = 'Project Media';
-        $project->addMedia($media);
+        $project->files[] = $media;
 
         $id = ProjectMapper::create()->execute($project);
         self::assertGreaterThan(0, $project->id);
         self::assertEquals($id, $project->id);
 
-        $projectR = ProjectMapper::get()->with('media')->where('id', $project->id)->execute();
+        $projectR = ProjectMapper::get()->with('files')->where('id', $project->id)->execute();
 
         self::assertEquals($project->getName(), $projectR->getName());
         self::assertEquals($project->description, $projectR->description);
@@ -91,8 +91,8 @@ final class ProjectMapperTest extends \PHPUnit\Framework\TestCase
         self::assertEquals($project->progress, $projectR->progress);
         self::assertEquals($project->getProgressType(), $projectR->getProgressType());
 
-        $expected = $project->getMedia();
-        $actual   = $projectR->getMedia();
+        $expected = $project->files;
+        $actual   = $projectR->files;
 
         self::assertEquals(\end($expected)->name, \end($actual)->name);
     }
