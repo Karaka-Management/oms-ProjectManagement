@@ -94,7 +94,7 @@ final class BackendController extends Controller
     {
         /** @var \phpOMS\Model\Html\Head $head */
         $head = $response->data['Content']->head;
-        $head->addAsset(AssetType::CSS, '/Modules/Calendar/Theme/Backend/css/styles.css?v=1.0.0');
+        $head->addAsset(AssetType::CSS, '/Modules/Calendar/Theme/Backend/css/styles.css?v=' . self::VERSION);
 
         $view = new View($this->app->l11nManager, $request, $response);
         $view->setTemplate('/Modules/ProjectManagement/Theme/Backend/projectmanagement-view');
