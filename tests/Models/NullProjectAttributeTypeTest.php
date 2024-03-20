@@ -22,7 +22,7 @@ use Modules\ProjectManagement\Models\NullProjectAttributeType;
 final class NullProjectAttributeTypeTest extends \PHPUnit\Framework\TestCase
 {
     /**
-     * @covers Modules\ProjectManagement\Models\NullProjectAttributeType
+     * @covers \Modules\ProjectManagement\Models\NullProjectAttributeType
      * @group module
      */
     public function testNull() : void
@@ -31,7 +31,7 @@ final class NullProjectAttributeTypeTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @covers Modules\ProjectManagement\Models\NullProjectAttributeType
+     * @covers \Modules\ProjectManagement\Models\NullProjectAttributeType
      * @group module
      */
     public function testId() : void
@@ -41,7 +41,7 @@ final class NullProjectAttributeTypeTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @covers Modules\ProjectManagement\Models\NullProjectAttributeType
+     * @covers \Modules\ProjectManagement\Models\NullProjectAttributeType
      * @group module
      */
     public function testJsonSerialize() : void

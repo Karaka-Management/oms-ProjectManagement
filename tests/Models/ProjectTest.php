@@ -35,7 +35,7 @@ final class ProjectTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @covers Modules\ProjectManagement\Models\Project
+     * @covers \Modules\ProjectManagement\Models\Project
      * @group module
      */
     public function testDefault() : void
@@ -59,7 +59,7 @@ final class ProjectTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @covers Modules\ProjectManagement\Models\Project
+     * @covers \Modules\ProjectManagement\Models\Project
      * @group module
      */
     public function testCreatedByInputOutput() : void
@@ -69,7 +69,7 @@ final class ProjectTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @covers Modules\ProjectManagement\Models\Project
+     * @covers \Modules\ProjectManagement\Models\Project
      * @group module
      */
     public function testNameInputOutput() : void
@@ -79,7 +79,7 @@ final class ProjectTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @covers Modules\ProjectManagement\Models\Project
+     * @covers \Modules\ProjectManagement\Models\Project
      * @group module
      */
     public function testDescriptionInputOutput() : void
@@ -89,7 +89,7 @@ final class ProjectTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @covers Modules\ProjectManagement\Models\Project
+     * @covers \Modules\ProjectManagement\Models\Project
      * @group module
      */
     public function testProgressInputOutput() : void
@@ -99,7 +99,7 @@ final class ProjectTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @covers Modules\ProjectManagement\Models\Project
+     * @covers \Modules\ProjectManagement\Models\Project
      * @group module
      */
     public function testProgressTypeInputOutput() : void
@@ -109,7 +109,7 @@ final class ProjectTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @covers Modules\ProjectManagement\Models\Project
+     * @covers \Modules\ProjectManagement\Models\Project
      * @group module
      */
     public function testSerialize() : void

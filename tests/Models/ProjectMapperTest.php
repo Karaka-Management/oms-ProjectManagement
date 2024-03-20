@@ -29,7 +29,7 @@ use phpOMS\Stdlib\Base\FloatInt;
 final class ProjectMapperTest extends \PHPUnit\Framework\TestCase
 {
     /**
-     * @covers Modules\ProjectManagement\Models\ProjectMapper
+     * @covers \Modules\ProjectManagement\Models\ProjectMapper
      * @group module
      */
     public function testCRUD() : void
@@ -98,7 +98,7 @@ final class ProjectMapperTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @covers Modules\ProjectManagement\Models\ProjectMapper
+     * @covers \Modules\ProjectManagement\Models\ProjectMapper
      * @group module
      */
     public function testNewest() : void
