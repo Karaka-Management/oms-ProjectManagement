@@ -19,31 +19,23 @@ use Modules\ProjectManagement\Models\NullProjectAttribute;
 /**
  * @internal
  */
+#[\PHPUnit\Framework\Attributes\CoversClass(\Modules\ProjectManagement\Models\NullProjectAttribute::class)]
 final class NullProjectAttributeTest extends \PHPUnit\Framework\TestCase
 {
-    /**
-     * @covers \Modules\ProjectManagement\Models\NullProjectAttribute
-     * @group module
-     */
+    #[\PHPUnit\Framework\Attributes\Group('module')]
     public function testNull() : void
     {
         self::assertInstanceOf('\Modules\ProjectManagement\Models\ProjectAttribute', new NullProjectAttribute());
     }
 
-    /**
-     * @covers \Modules\ProjectManagement\Models\NullProjectAttribute
-     * @group module
-     */
+    #[\PHPUnit\Framework\Attributes\Group('module')]
     public function testId() : void
     {
         $null = new NullProjectAttribute(2);
         self::assertEquals(2, $null->id);
     }
 
-    /**
-     * @covers \Modules\ProjectManagement\Models\NullProjectAttribute
-     * @group module
-     */
+    #[\PHPUnit\Framework\Attributes\Group('module')]
     public function testJsonSerialize() : void
     {
         $null = new NullProjectAttribute(2);

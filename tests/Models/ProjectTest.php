@@ -22,6 +22,7 @@ use phpOMS\Stdlib\Base\FloatInt;
 /**
  * @internal
  */
+#[\PHPUnit\Framework\Attributes\CoversClass(\Modules\ProjectManagement\Models\Project::class)]
 final class ProjectTest extends \PHPUnit\Framework\TestCase
 {
     private Project $project;
@@ -34,10 +35,7 @@ final class ProjectTest extends \PHPUnit\Framework\TestCase
         $this->project = new Project();
     }
 
-    /**
-     * @covers \Modules\ProjectManagement\Models\Project
-     * @group module
-     */
+    #[\PHPUnit\Framework\Attributes\Group('module')]
     public function testDefault() : void
     {
         self::assertEquals(0, $this->project->id);
@@ -58,60 +56,42 @@ final class ProjectTest extends \PHPUnit\Framework\TestCase
         self::assertEmpty($this->project->tasks);
     }
 
-    /**
-     * @covers \Modules\ProjectManagement\Models\Project
-     * @group module
-     */
+    #[\PHPUnit\Framework\Attributes\Group('module')]
     public function testCreatedByInputOutput() : void
     {
         $this->project->createdBy = new NullAccount(1);
         self::assertEquals(1, $this->project->createdBy->id);
     }
 
-    /**
-     * @covers \Modules\ProjectManagement\Models\Project
-     * @group module
-     */
+    #[\PHPUnit\Framework\Attributes\Group('module')]
     public function testNameInputOutput() : void
     {
         $this->project->setName('Name');
         self::assertEquals('Name', $this->project->getName());
     }
 
-    /**
-     * @covers \Modules\ProjectManagement\Models\Project
-     * @group module
-     */
+    #[\PHPUnit\Framework\Attributes\Group('module')]
     public function testDescriptionInputOutput() : void
     {
         $this->project->description = 'Description';
         self::assertEquals('Description', $this->project->description);
     }
 
-    /**
-     * @covers \Modules\ProjectManagement\Models\Project
-     * @group module
-     */
+    #[\PHPUnit\Framework\Attributes\Group('module')]
     public function testProgressInputOutput() : void
     {
         $this->project->progress = 10;
         self::assertEquals(10, $this->project->progress);
     }
 
-    /**
-     * @covers \Modules\ProjectManagement\Models\Project
-     * @group module
-     */
+    #[\PHPUnit\Framework\Attributes\Group('module')]
     public function testProgressTypeInputOutput() : void
     {
         $this->project->setProgressType(ProgressType::TASKS);
         self::assertEquals(ProgressType::TASKS, $this->project->getProgressType());
     }
 
-    /**
-     * @covers \Modules\ProjectManagement\Models\Project
-     * @group module
-     */
+    #[\PHPUnit\Framework\Attributes\Group('module')]
     public function testSerialize() : void
     {
         $this->project->setName('Name');

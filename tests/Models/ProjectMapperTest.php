@@ -26,12 +26,10 @@ use phpOMS\Stdlib\Base\FloatInt;
 /**
  * @internal
  */
+#[\PHPUnit\Framework\Attributes\CoversClass(\Modules\ProjectManagement\Models\ProjectMapper::class)]
 final class ProjectMapperTest extends \PHPUnit\Framework\TestCase
 {
-    /**
-     * @covers \Modules\ProjectManagement\Models\ProjectMapper
-     * @group module
-     */
+    #[\PHPUnit\Framework\Attributes\Group('module')]
     public function testCRUD() : void
     {
         $project = new Project();
@@ -97,10 +95,7 @@ final class ProjectMapperTest extends \PHPUnit\Framework\TestCase
         self::assertEquals(\end($expected)->name, \end($actual)->name);
     }
 
-    /**
-     * @covers \Modules\ProjectManagement\Models\ProjectMapper
-     * @group module
-     */
+    #[\PHPUnit\Framework\Attributes\Group('module')]
     public function testNewest() : void
     {
         $newest = ProjectMapper::getAll()->sort('id', OrderType::DESC)->limit(1)->execute();
