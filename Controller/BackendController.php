@@ -14,6 +14,7 @@ declare(strict_types=1);
 
 namespace Modules\ProjectManagement\Controller;
 
+use Modules\ProjectManagement\Models\NullProject;
 use Modules\ProjectManagement\Models\ProjectMapper;
 use phpOMS\Asset\AssetType;
 use phpOMS\Contract\RenderableInterface;
@@ -51,7 +52,7 @@ final class BackendController extends Controller
         $view->setTemplate('/Modules/ProjectManagement/Theme/Backend/projectmanagement-list');
         $view->data['nav'] = $this->app->moduleManager->get('Navigation')->createNavigationMid(1001701001, $request, $response);
 
-        $projects               = ProjectMapper::getAll()->sort('id', OrderType::DESC)->limit(25);
+        $projects               = ProjectMapper::getAll()->sort('id', OrderType::DESC)->limit(25)->executeGetArray();
         $view->data['projects'] = $projects;
 
         return $view;
@@ -72,8 +73,10 @@ final class BackendController extends Controller
     public function viewProjectManagementCreate(RequestAbstract $request, ResponseAbstract $response, array $data = []) : RenderableInterface
     {
         $view = new View($this->app->l11nManager, $request, $response);
-        $view->setTemplate('/Modules/ProjectManagement/Theme/Backend/projectmanagement-create');
+        $view->setTemplate('/Modules/ProjectManagement/Theme/Backend/projectmanagement-view');
         $view->data['nav'] = $this->app->moduleManager->get('Navigation')->createNavigationMid(1001701001, $request, $response);
+
+        $view->data['project'] = new NullProject();
 
         return $view;
     }

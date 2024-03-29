@@ -44,7 +44,7 @@ final class ProjectTest extends \PHPUnit\Framework\TestCase
         self::assertEquals((new \DateTime('now'))->format('Y-m-d'), $this->project->start->format('Y-m-d'));
         self::assertEquals((new \DateTime('now'))->modify('+1 month')->format('Y-m-d'), $this->project->end->format('Y-m-d'));
         self::assertEquals(0, $this->project->createdBy->id);
-        self::assertEquals('', $this->project->getName());
+        self::assertEquals('', $this->project->name);
         self::assertEquals('', $this->project->description);
         self::assertEquals(0, $this->project->budgetCosts->getInt());
         self::assertEquals(0, $this->project->budgetEarnings->getInt());
@@ -52,7 +52,7 @@ final class ProjectTest extends \PHPUnit\Framework\TestCase
         self::assertEquals(0, $this->project->actualEarnings->getInt());
         self::assertEquals(0, $this->project->progress);
         self::assertEquals([], $this->project->files);
-        self::assertEquals(ProgressType::MANUAL, $this->project->getProgressType());
+        self::assertEquals(ProgressType::MANUAL, $this->project->progressType);
         self::assertEmpty($this->project->tasks);
     }
 
@@ -61,13 +61,6 @@ final class ProjectTest extends \PHPUnit\Framework\TestCase
     {
         $this->project->createdBy = new NullAccount(1);
         self::assertEquals(1, $this->project->createdBy->id);
-    }
-
-    #[\PHPUnit\Framework\Attributes\Group('module')]
-    public function testNameInputOutput() : void
-    {
-        $this->project->setName('Name');
-        self::assertEquals('Name', $this->project->getName());
     }
 
     #[\PHPUnit\Framework\Attributes\Group('module')]
@@ -85,21 +78,14 @@ final class ProjectTest extends \PHPUnit\Framework\TestCase
     }
 
     #[\PHPUnit\Framework\Attributes\Group('module')]
-    public function testProgressTypeInputOutput() : void
-    {
-        $this->project->setProgressType(ProgressType::TASKS);
-        self::assertEquals(ProgressType::TASKS, $this->project->getProgressType());
-    }
-
-    #[\PHPUnit\Framework\Attributes\Group('module')]
     public function testSerialize() : void
     {
-        $this->project->setName('Name');
+        $this->project->name = 'Name';
         $this->project->description = 'Description';
         $this->project->start       = new \DateTime();
         $this->project->end         = new \DateTime();
         $this->project->progress    = 10;
-        $this->project->setProgressType(ProgressType::TASKS);
+        $this->project->progressType = ProgressType::TASKS;
 
         $serialized = $this->project->jsonSerialize();
         unset($serialized['calendar']);

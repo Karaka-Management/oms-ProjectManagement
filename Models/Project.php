@@ -173,7 +173,7 @@ class Project
      *
      * @since 1.0.0
      */
-    public function __construct(string $name = '')
+    public function __construct()
     {
         $this->start = new \DateTime('now');
         $this->end   = new \DateTime('now');
@@ -189,61 +189,6 @@ class Project
         $this->actualEarnings = new FloatInt();
         $this->budgetCosts    = new FloatInt();
         $this->budgetEarnings = new FloatInt();
-
-        $this->setName($name);
-    }
-
-    /**
-     * Get progress type
-     *
-     * @return int
-     *
-     * @since 1.0.0
-     */
-    public function getProgressType() : int
-    {
-        return $this->progressType;
-    }
-
-    /**
-     * Set progress type
-     *
-     * @param int $type Progress type
-     *
-     * @return void
-     *
-     * @since 1.0.0
-     */
-    public function setProgressType(int $type) : void
-    {
-        $this->progressType = $type;
-    }
-
-    /**
-     * Get name
-     *
-     * @return string
-     *
-     * @since 1.0.0
-     */
-    public function getName() : string
-    {
-        return $this->name;
-    }
-
-    /**
-     * Set name
-     *
-     * @param string $name Project name
-     *
-     * @return void
-     *
-     * @since 1.0.0
-     */
-    public function setName(string $name) : void
-    {
-        $this->name           = $name;
-        $this->calendar->name = $name;
     }
 
     /**
@@ -280,4 +225,5 @@ class Project
 
     use \Modules\Media\Models\MediaListTrait;
     use \Modules\Attribute\Models\AttributeHolderTrait;
+    // @todo implement tags
 }
