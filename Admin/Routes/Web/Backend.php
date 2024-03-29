@@ -18,7 +18,7 @@ use phpOMS\Account\PermissionType;
 use phpOMS\Router\RouteVerb;
 
 return [
-    '^.*/projectmanagement/list(\?.*$|$)' => [
+    '^/projectmanagement/list(\?.*$|$)' => [
         [
             'dest'       => '\Modules\ProjectManagement\Controller\BackendController:viewProjectManagementList',
             'verb'       => RouteVerb::GET,
@@ -29,7 +29,7 @@ return [
             ],
         ],
     ],
-    '^.*/projectmanagement/create(\?.*$|$)' => [
+    '^/projectmanagement/create(\?.*$|$)' => [
         [
             'dest'       => '\Modules\ProjectManagement\Controller\BackendController:viewProjectManagementCreate',
             'verb'       => RouteVerb::GET,
@@ -40,7 +40,7 @@ return [
             ],
         ],
     ],
-    '^.*/projectmanagement/view(\?.*$|$)' => [
+    '^/projectmanagement/view(\?.*$|$)' => [
         [
             'dest'       => '\Modules\ProjectManagement\Controller\BackendController:viewProjectManagementView',
             'verb'       => RouteVerb::GET,
