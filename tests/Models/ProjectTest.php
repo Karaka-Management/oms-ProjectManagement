@@ -80,11 +80,11 @@ final class ProjectTest extends \PHPUnit\Framework\TestCase
     #[\PHPUnit\Framework\Attributes\Group('module')]
     public function testSerialize() : void
     {
-        $this->project->name = 'Name';
-        $this->project->description = 'Description';
-        $this->project->start       = new \DateTime();
-        $this->project->end         = new \DateTime();
-        $this->project->progress    = 10;
+        $this->project->name         = 'Name';
+        $this->project->description  = 'Description';
+        $this->project->start        = new \DateTime();
+        $this->project->end          = new \DateTime();
+        $this->project->progress     = 10;
         $this->project->progressType = ProgressType::TASKS;
 
         $serialized = $this->project->jsonSerialize();

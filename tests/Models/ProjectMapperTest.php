@@ -34,7 +34,7 @@ final class ProjectMapperTest extends \PHPUnit\Framework\TestCase
     {
         $project = new Project();
 
-        $project->name = 'Projectname';
+        $project->name        = 'Projectname';
         $project->description = 'Description';
         $project->createdBy   = new NullAccount(1);
         $project->start       = new \DateTime('2000-05-05');
@@ -59,7 +59,7 @@ final class ProjectMapperTest extends \PHPUnit\Framework\TestCase
         $project->tasks[] = $task;
         $project->tasks[] = $task2;
 
-        $project->progress = 10;
+        $project->progress     = 10;
         $project->progressType = ProgressType::TASKS;
 
         $media              = new Media();
@@ -98,7 +98,7 @@ final class ProjectMapperTest extends \PHPUnit\Framework\TestCase
     #[\PHPUnit\Framework\Attributes\Group('module')]
     public function testNewest() : void
     {
-        $newest = ProjectMapper::getAll()->sort('id', OrderType::DESC)->limit(1)->execute();
+        $newest = ProjectMapper::getAll()->sort('id', OrderType::DESC)->limit(1)->executeGetArray();
 
         self::assertCount(1, $newest);
     }

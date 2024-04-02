@@ -12,10 +12,11 @@
  */
 declare(strict_types=1);
 
-use Modules\EventManagement\Models\ProgressType;
+use Modules\ProjectManagement\Models\NullProject;
+use Modules\ProjectManagement\Models\ProgressType;
 
 /** \Modules\ProjectManagement\Models\Project $project */
-$project = $this->data['project'];
+$project = $this->data['project'] ?? new NullProject();
 
 $isNew = $project->id === 0;
 

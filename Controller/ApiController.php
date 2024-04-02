@@ -73,17 +73,17 @@ final class ApiController extends Controller
      */
     public function createProjectFromRequest(RequestAbstract $request) : Project
     {
-        $project                 = new Project();
-        $project->name           = $request->getDataString('name') ?? '';
-        $project->descriptionRaw = $request->getDataString('plain') ?? '';
-        $project->description    = Markdown::parse($request->getDataString('plain') ?? '');
-        $project->start           = $request->getDataDateTime('start') ?? $project->start;
-        $project->end           = $request->getDataDateTime('end') ?? $project->end;
-        $project->createdBy      = new NullAccount($request->header->account);
-        $project->progressType   = ProgressType::tryFromValue($request->getDataInt('progresstype')) ?? ProgressType::MANUAL;
-        $project->progress       = $request->getDataInt('progress') ?? 0;
-        $project->budgetCosts->value       = $request->getDataInt('budgetcosts') ?? 0;
-        $project->actualCosts->value       = $request->getDataInt('actualcosts') ?? 0;
+        $project                     = new Project();
+        $project->name               = $request->getDataString('name') ?? '';
+        $project->descriptionRaw     = $request->getDataString('plain') ?? '';
+        $project->description        = Markdown::parse($request->getDataString('plain') ?? '');
+        $project->start              = $request->getDataDateTime('start') ?? $project->start;
+        $project->end                = $request->getDataDateTime('end') ?? $project->end;
+        $project->createdBy          = new NullAccount($request->header->account);
+        $project->progressType       = ProgressType::tryFromValue($request->getDataInt('progresstype')) ?? ProgressType::MANUAL;
+        $project->progress           = $request->getDataInt('progress') ?? 0;
+        $project->budgetCosts->value = $request->getDataInt('budgetcosts') ?? 0;
+        $project->actualCosts->value = $request->getDataInt('actualcosts') ?? 0;
 
         // @todo implement unit
         //$project->unit = $this->app->unitId;
