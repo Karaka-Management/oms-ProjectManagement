@@ -22,7 +22,7 @@ return [
         [
             'dest'       => '\Modules\ProjectManagement\Controller\ApiController:apiProjectCreate',
             'verb'       => RouteVerb::PUT,
-            'active' => true,
+            'active'     => true,
             'permission' => [
                 'module' => ApiController::NAME,
                 'type'   => PermissionType::CREATE,
