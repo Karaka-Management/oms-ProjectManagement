@@ -87,6 +87,13 @@
                 "null": false,
                 "foreignTable": "account",
                 "foreignKey": "account_id"
+            },
+            "projectmanagement_project_unit": {
+                "name": "projectmanagement_project_unit",
+                "type": "INT",
+                "null": false,
+                "foreignTable": "unit",
+                "foreignKey": "unit_id"
             }
         }
     },

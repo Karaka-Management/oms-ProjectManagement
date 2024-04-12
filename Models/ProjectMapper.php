@@ -56,6 +56,7 @@ final class ProjectMapper extends DataMapperFactory
         'projectmanagement_project_progress_type'   => ['name' => 'projectmanagement_project_progress_type',   'type' => 'int',               'internal' => 'progressType'],
         'projectmanagement_project_created_by'      => ['name' => 'projectmanagement_project_created_by',      'type' => 'int',               'internal' => 'createdBy', 'readonly' => true],
         'projectmanagement_project_created_at'      => ['name' => 'projectmanagement_project_created_at',      'type' => 'DateTimeImmutable', 'internal' => 'createdAt', 'readonly' => true],
+        'projectmanagement_project_unit'            => ['name' => 'projectmanagement_project_unit',      'type' => 'int',               'internal' => 'unit'],
     ];
 
     /**

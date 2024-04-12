@@ -15,7 +15,7 @@ declare(strict_types=1);
 use Modules\ProjectManagement\Models\NullProject;
 use Modules\ProjectManagement\Models\ProgressType;
 
-/** \Modules\ProjectManagement\Models\Project $project */
+/** @var \Modules\ProjectManagement\Models\Project $project */
 $project = $this->data['project'] ?? new NullProject();
 
 $isNew = $project->id === 0;
@@ -72,7 +72,7 @@ echo $this->data['nav']->render(); ?>
                             </select>
                         </div>
                         <div>
-                            <input type="text" id="iProgress" name="progress" value="<?= $project->progress; ?>"<?= $project->progressType !== ProgressType::MANUAL ? ' disabled' : ''; ?>>
+                            <input type="number" id="iProgress" name="progress" step="1" min="0" max="100" value="<?= $project->progress; ?>"<?= $project->progressType !== ProgressType::MANUAL ? ' disabled' : ''; ?>>
                         </div>
                     </div>
                 </div>
@@ -81,14 +81,14 @@ echo $this->data['nav']->render(); ?>
                     <div>
                         <div class="form-group">
                         <label for="iBudget"><?= $this->getHtml('Budget'); ?></label><td>
-                            <input type="text" id="iBudget" name="budget">
+                            <input type="number" step="any" id="iBudget" name="budget">
                         </div>
                     </div>
 
                     <div>
                         <div class="form-group">
                         <label for="iActual"><?= $this->getHtml('Actual'); ?></label>
-                            <input type="text" id="iActual" name="actual">
+                            <input type="number" step="any" id="iActual" name="actual">
                         </div>
                     </div>
                 </div>
@@ -116,7 +116,7 @@ echo $this->data['nav']->render(); ?>
 <?php if (!$isNew) : ?>
 <div class="row">
     <div class="col-xs-12 col-md-6">
-        <?= $this->getData('calendar')->render($project->getCalendar()); ?>
+        <?= $this->getData('calendar')->render($project->calendar); ?>
     </div>
 
     <div class="col-xs-12 col-md-6">

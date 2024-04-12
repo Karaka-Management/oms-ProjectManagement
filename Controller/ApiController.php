@@ -84,21 +84,20 @@ final class ApiController extends Controller
         $project->progress           = $request->getDataInt('progress') ?? 0;
         $project->budgetCosts->value = $request->getDataInt('budgetcosts') ?? 0;
         $project->actualCosts->value = $request->getDataInt('actualcosts') ?? 0;
+        $project->unit               = $request->getDataInt('unit') ?? $this->app->unitId;
 
-        // @todo implement unit
-        //$project->unit = $this->app->unitId;
-
-        if (!empty($uploadedFiles = $request->files)) {
+        // @todo implement media path based on id
+        if (!empty($request->files)) {
             $uploaded = $this->app->moduleManager->get('Media', 'Api')->uploadFiles(
-                [],
-                [],
-                $uploadedFiles,
-                $request->header->account,
-                __DIR__ . '/../../../Modules/Media/Files/Modules/ProjectManagement',
-                '/Modules/ProjectManagement',
+                names: [],
+                fileNames: [],
+                files: $request->files,
+                account: $request->header->account,
+                basePath: __DIR__ . '/../../../Modules/Media/Files/Modules/ProjectManagement',
+                virtualPath: '/Modules/ProjectManagement',
             );
 
-            foreach ($uploaded as $media) {
+            foreach ($uploaded->sources as $media) {
                 $project->files[] = $media;
             }
         }

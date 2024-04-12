@@ -164,7 +164,9 @@ class Project
      * @var Task[]
      * @since 1.0.0
      */
-    public $tasks = [];
+    public array $tasks = [];
+
+    public int $unit = 0;
 
     /**
      * Constructor.
