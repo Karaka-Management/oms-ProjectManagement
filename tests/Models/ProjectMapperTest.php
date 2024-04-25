@@ -39,6 +39,7 @@ final class ProjectMapperTest extends \PHPUnit\Framework\TestCase
         $project->createdBy   = new NullAccount(1);
         $project->start       = new \DateTime('2000-05-05');
         $project->end         = new \DateTime('2005-05-05');
+        $project->unit        = 1;
 
         $money = new FloatInt();
         $money->setString('1.23');
