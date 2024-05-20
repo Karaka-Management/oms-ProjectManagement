@@ -6,7 +6,7 @@
  *
  * @package   Modules\ProjectManagement
  * @copyright Dennis Eichhorn
- * @license   OMS License 2.0
+ * @license   OMS License 2.2
  * @version   1.0.0
  * @link      https://jingga.app
  */
@@ -20,7 +20,7 @@ use phpOMS\Module\ModuleAbstract;
  * Event Management controller class.
  *
  * @package Modules\ProjectManagement
- * @license OMS License 2.0
+ * @license OMS License 2.2
  * @link    https://jingga.app
  * @since   1.0.0
  */
