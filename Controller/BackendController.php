@@ -94,21 +94,23 @@ final class BackendController extends Controller
         }
 
         // Count tasks per project where tasks are used as progress indication
-        $projectIds = \implode(',', $taskProgress);
+        if (!empty($taskProgress)) {
+            $projectIds = \implode(',', $taskProgress);
 
-        $sql = <<<SQL
-        SELECT projectmanagement_task_relation_dst as id,
-            COUNT(projectmanagement_task_relation_src) as total_tasks,
-            SUM(task.task_status = 1 OR task.task_status = 2) AS open_tasks
-        FROM projectmanagement_task_relation
-        LEFT JOIN task ON projectmanagement_task_relation.projectmanagement_task_relation_src = task.task_id
-        WHERE projectmanagement_task_relation_dst IN ({$projectIds});
-        SQL;
+            $sql = <<<SQL
+            SELECT projectmanagement_task_relation_dst as id,
+                COUNT(projectmanagement_task_relation_src) as total_tasks,
+                SUM(task.task_status = 1 OR task.task_status = 2) AS open_tasks
+            FROM projectmanagement_task_relation
+            LEFT JOIN task ON projectmanagement_task_relation.projectmanagement_task_relation_src = task.task_id
+            WHERE projectmanagement_task_relation_dst IN ({$projectIds});
+            SQL;
 
-        $query   = new Builder($this->app->dbPool->get());
-        $results = $query->raw($sql)->execute()?->fetchAll(\PDO::FETCH_ASSOC) ?? [];
-        foreach ($results as $result) {
-            $view->data['progress'][$result['id']] = (int) (($result['total_tasks'] - $result['open_tasks']) / $result['total_tasks']);
+            $query   = new Builder($this->app->dbPool->get());
+            $results = $query->raw($sql)->execute()?->fetchAll(\PDO::FETCH_ASSOC) ?? [];
+            foreach ($results as $result) {
+                $view->data['progress'][$result['id']] = (int) (($result['total_tasks'] - $result['open_tasks']) / $result['total_tasks']);
+            }
         }
 
         return $view;
