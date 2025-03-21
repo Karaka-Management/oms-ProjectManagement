@@ -175,7 +175,7 @@ final class BackendController extends Controller
         $mediaListView->setTemplate('/Modules/Media/Theme/Backend/Components/Media/list');
         $view->data['medialist'] = $mediaListView;
 
-        $project               = ProjectMapper::get()->where('id', (int) $request->getData('id'))->execute();
+        $project               = ProjectMapper::get()->where('id', $request->getDataInt('id') ?? 0)->execute();
         $view->data['project'] = $project;
 
         return $view;
